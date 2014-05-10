@@ -1,26 +1,26 @@
 # depslib dependency file v1.0
-1399756763 source:c:\users\leonardo\projects\pengo\pengo\src\bitmap.c
+1399759635 source:c:\users\leonardo\projects\pengo\pengo\src\bitmap.c
 	"bitmap.h"
 	<stdio.h>
 	<stdlib.h>
 	<errno.h>
 
-1399756763 c:\users\leonardo\projects\pengo\pengo\src\bitmap.h
+1399759635 c:\users\leonardo\projects\pengo\pengo\src\bitmap.h
 	<GL/glut.h>
 	<windows.h>
 	<wingdi.h>
 
-1399749931 c:\users\leonardo\projects\pengo\depend\include\gl\glut.h
+1399759635 c:\users\leonardo\projects\pengo\depend\include\gl\glut.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
-1399749931 c:\users\leonardo\projects\pengo\depend\include\gl\gl.h
+1399759635 c:\users\leonardo\projects\pengo\depend\include\gl\gl.h
 
-1399749931 c:\users\leonardo\projects\pengo\depend\include\gl\glu.h
+1399759635 c:\users\leonardo\projects\pengo\depend\include\gl\glu.h
 	<GL/gl.h>
 
-1399758310 source:c:\users\leonardo\projects\pengo\pengo\src\main.cpp
+1399759635 source:c:\users\leonardo\projects\pengo\pengo\src\main.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -31,7 +31,7 @@
 	<al/alut.h>
 	"bitmap.h"
 
-1399749931 c:\users\leonardo\projects\pengo\depend\include\al\alut.h
+1399759635 c:\users\leonardo\projects\pengo\depend\include\al\alut.h
 	<al/alc.h>
 	<al/al.h>
 	<OpenAL/alc.h>
@@ -39,7 +39,7 @@
 	<AL/al.h>
 	<AL/alc.h>
 
-1399749931 c:\users\leonardo\projects\pengo\depend\include\al\alc.h
+1399759635 c:\users\leonardo\projects\pengo\depend\include\al\alc.h
 
-1399749931 c:\users\leonardo\projects\pengo\depend\include\al\al.h
+1399759635 c:\users\leonardo\projects\pengo\depend\include\al\al.h
 
