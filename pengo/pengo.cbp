@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="pengo" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/pengo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="C:/Users/leonardo/Projects/pengo/depend/bin" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/pengo" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="C:/Users/leonardo/Projects/pengo/depend/bin" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="../depend/include" />
+		</Compiler>
+		<Linker>
+			<Add library="..\depend\lib\alut.lib" />
+			<Add library="..\depend\lib\EFX-Util.lib" />
+			<Add library="..\depend\lib\GlU32.Lib" />
+			<Add library="..\depend\lib\glut32.lib" />
+			<Add library="..\depend\lib\OpenAL32.lib" />
+			<Add library="..\depend\lib\OpenGL32.Lib" />
+			<Add directory="C:/Users/leonardo/Projects/pengo/depend/lib" />
+		</Linker>
+		<Unit filename="src/bitmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bitmap.h" />
+		<Unit filename="src/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
