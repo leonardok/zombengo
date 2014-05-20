@@ -16,6 +16,7 @@ sobre um plano.
 
 //bitmap class to load bitmaps for textures
 #include "bitmap.h"
+#include "Rock.h"
 
 #pragma comment(lib, "OpenAL32.lib")
 #pragma comment(lib, "alut.lib")
@@ -128,6 +129,9 @@ GLubyte     temp;            /* Swapping variable */
 GLenum      type;            /* Texture type */
 GLuint      texture;         /* Texture object */
 
+
+Rock *rock;
+
 void setWindow() {
 	//roty = 0.0f;
     //rotx = 90.0f;
@@ -175,6 +179,8 @@ void mainInit() {
 	initSound();
 
 	initTexture();
+
+	rock->Draw();
 
 	printf("w - andar \n");
 	printf("a - esquerda \n");
@@ -564,6 +570,12 @@ int main(int argc, char **argv) {
 	*/
 	glutKeyboardFunc(onKeyDown);
 	glutKeyboardUpFunc(onKeyUp);
+
+	rock = new Rock();
+	if(rock->LoadObject() == false)
+    {
+        printf("Couldn't load the rock!");
+    }
 
 	mainInit();
 
