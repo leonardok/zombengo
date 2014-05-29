@@ -43,3 +43,161 @@
 
 1399759635 c:\users\leonardo\projects\pengo\depend\include\al\al.h
 
+1400593435 source:c:\users\aluno\pengo\pengo\src\bitmap.c
+	"bitmap.h"
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+
+1400593435 c:\users\aluno\pengo\pengo\src\bitmap.h
+	<GL/glut.h>
+	<windows.h>
+	<wingdi.h>
+
+1401371319 c:\users\aluno\pengo\depend\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1401371319 c:\users\aluno\pengo\depend\include\gl\gl.h
+
+1401371319 c:\users\aluno\pengo\depend\include\gl\glu.h
+	<GL/gl.h>
+
+1400596882 source:c:\users\aluno\pengo\pengo\src\main.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<cmath>
+	<iostream>
+	<gl/glut.h>
+	<al/alut.h>
+	"bitmap.h"
+	"Rock.h"
+
+1401371319 c:\users\aluno\pengo\depend\include\al\alut.h
+	<al/alc.h>
+	<al/al.h>
+	<OpenAL/alc.h>
+	<OpenAL/al.h>
+	<AL/al.h>
+	<AL/alc.h>
+
+1401371319 c:\users\aluno\pengo\depend\include\al\alc.h
+
+1401371319 c:\users\aluno\pengo\depend\include\al\al.h
+
+1400593740 source:c:\users\aluno\pengo\pengo\src\glmimg.cpp
+	<string.h>
+	<math.h>
+	"Texture.h"
+	<windows.h>
+	<GL/gl.h>
+	"glm.h"
+
+1400593740 c:\users\aluno\pengo\pengo\src\texture.h
+	<windows.h>
+	<windowsx.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/glut.h>
+	<math.h>
+
+1400594330 c:\users\aluno\pengo\pengo\src\glm.h
+	<GLUT/glut.h>
+	<windows.h>
+	<gl/gl.h>
+	<gl/glut.h>
+
+1400593739 source:c:\users\aluno\pengo\pengo\src\texture.cpp
+	"Texture.h"
+
+1400598278 source:c:\users\aluno\pengo\pengo\src\glm.cpp
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+1400596820 source:c:\users\aluno\pengo\pengo\src\rock.cpp
+	"rock.h"
+
+1400598323 c:\users\aluno\pengo\pengo\src\rock.h
+	"glm.h"
+	<string>
+	<stdio.h>
+
+1401372120 source:c:\users\aluno\pengo\pengo\bitmap.c
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+	"bitmap.h"
+
+1401372090 c:\users\aluno\pengo\pengo\bitmap.h
+	<windows.h>
+	<wingdi.h>
+	<GL/glut.h>
+
+1401371364 source:c:\users\aluno\pengo\pengo\glm.cpp
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+1401371364 c:\users\aluno\pengo\pengo\glm.h
+	<GLUT/glut.h>
+	<windows.h>
+	<gl/gl.h>
+	<gl/glut.h>
+
+1401371364 source:c:\users\aluno\pengo\pengo\glmimg.cpp
+	<string.h>
+	<math.h>
+	"Texture.h"
+	<windows.h>
+	<GL/gl.h>
+	"glm.h"
+
+1401371364 c:\users\aluno\pengo\pengo\texture.h
+	<windows.h>
+	<windowsx.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/glut.h>
+	<math.h>
+
+1401373739 source:c:\users\aluno\pengo\pengo\main.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<cmath>
+	<iostream>
+	<gl/glut.h>
+	<al/alut.h>
+	"bitmap.h"
+	"Rock.h"
+
+1401371506 c:\users\aluno\pengo\pengo\rock.h
+	"glm.h"
+	<string>
+	<stdio.h>
+
+1401371364 source:c:\users\aluno\pengo\pengo\rock.cpp
+	"rock.h"
+
+1401371364 source:c:\users\aluno\pengo\pengo\texture.cpp
+	"Texture.h"
+
+1401373238 source:c:\users\aluno\pengo\pengo\sounds.cpp
+	"Sounds.h"
+
+1401374103 c:\users\aluno\pengo\pengo\sounds.h
+	<windows.h>
+	<stdio.h>
+	<al/alut.h>
+

@@ -1,3 +1,3 @@
 [submodule "pengo/dependencies/glm"]
 	path = pengo/dependencies/glm
-	url = https://github.com/devernay/glm.git
+	url = https://github.com/leonardok/glm.git
