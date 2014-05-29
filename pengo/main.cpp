@@ -180,7 +180,6 @@ void mainInit() {
 
 	initTexture();
 
-	rock->Draw();
 
 	printf("w - andar \n");
 	printf("a - esquerda \n");
@@ -406,6 +405,8 @@ void mainRender() {
 	glFlush();
 	glutPostRedisplay();
 	Sleep(30);
+
+	rock->Draw();
 }
 
 /**

@@ -11,11 +11,12 @@
  * Include necessary headers.
  */
 
-#  include <GL/glut.h>
-#  ifdef WIN32
-#    include <windows.h>
-#    include <wingdi.h>
-#  endif /* WIN32 */
+
+#include <windows.h>
+#include <wingdi.h>
+
+#include <GL/glut.h>
+
 
 /*
  * Make this header file work with C and C++ source code...

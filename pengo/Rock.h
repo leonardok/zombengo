@@ -20,7 +20,7 @@ class Rock
     protected:
 
     private:
-        std::string resource_name = "res/stones/rock1/Rock1.obj";
+        std::string resource_name = "res/objs/ball.obj";
         GLMmodel *m_poModel;
 };
 
