@@ -35,7 +35,7 @@ void mainInit();
 void initSound();
 void initTexture();
 void createGLUI();
-void mainRender();
+void renderScene();
 void mainCreateMenu();
 void onMouseButton(int button, int state, int x, int y);
 void onMouseMove(int x, int y);
@@ -86,7 +86,7 @@ float speedZ = 0.0f;
 
 float posX = 0.0f;
 float posY = 0.4f;
-float posZ = 1.0f;
+float posZ = 15.0f;
 
 /*
 variavel auxiliar pra dar variação na altura do ponto de vista ao andar.
@@ -188,65 +188,15 @@ void mainInit() {
 }
 
 /**
-Initialize openal and check for errors
-*/
+ * Initialize openal and check for errors
+ *
+ * There is a class named Sounds that should handle sounds.
+ */
 void initSound() {
 
 	printf("Initializing OpenAl \n");
 
-	// Init openAL
-	alutInit(0, NULL);
-
-	alGetError(); // clear any error messages
-
-    // Generate buffers, or else no sound will happen!
-    alGenBuffers(NUM_BUFFERS, buffer);
-
-    if(alGetError() != AL_NO_ERROR)
-    {
-        printf("- Error creating buffers !!\n");
-        exit(1);
-    }
-    else
-    {
-        printf("init() - No errors yet.\n");
-    }
-
-	alutLoadWAVFile("..\\res\\Footsteps.wav",&format,&data,&size,&freq,false);
-    alBufferData(buffer[0],format,data,size,freq);
-    //alutUnloadWAV(format,data,size,freq);
-
-	alGetError(); /* clear error */
-    alGenSources(NUM_SOURCES, source);
-
-    if(alGetError() != AL_NO_ERROR)
-    {
-        printf("- Error creating sources !!\n");
-        exit(2);
-    }
-    else
-    {
-        printf("init - no errors after alGenSources\n");
-    }
-
-	listenerPos[0] = posX;
-	listenerPos[1] = posY;
-	listenerPos[2] = posZ;
-
-	source0Pos[0] = posX;
-	source0Pos[1] = posY;
-	source0Pos[2] = posZ;
-
-	alListenerfv(AL_POSITION,listenerPos);
-    alListenerfv(AL_VELOCITY,listenerVel);
-    alListenerfv(AL_ORIENTATION,listenerOri);
-
-	alSourcef(source[0], AL_PITCH, 1.0f);
-    alSourcef(source[0], AL_GAIN, 1.0f);
-    alSourcefv(source[0], AL_POSITION, source0Pos);
-    alSourcefv(source[0], AL_VELOCITY, source0Vel);
-    alSourcei(source[0], AL_BUFFER,buffer[0]);
-    alSourcei(source[0], AL_LOOPING, AL_TRUE);
+	// This sould call Sounds::init
 
 	printf("Sound ok! \n\n");
 }
@@ -300,7 +250,25 @@ void initTexture(void)
 	printf("Textures ok.\n\n", texture);
 }
 
-void renderFloor() {
+
+void renderFloor()
+{
+	glColor4f(0.8f,0.8f,0.8f,1.0f);
+	glBegin(GL_LINES);
+	for (int i = 0; i <= 10; i++) {
+		glVertex3f(-planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
+		glVertex3f(planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
+	}
+	for (int i = 0; i <= 10; i++) {
+		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, -planeSize);
+		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, planeSize);
+	}
+	glEnd();
+
+
+}
+
+void renderFloor_old() {
 
 	// i want some nice, smooth, antialiased lines
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -353,12 +321,6 @@ void renderFloor() {
 	glPopMatrix();
 }
 
-void renderScene() {
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	updateCam();
-	renderFloor();
-}
 
 void updateState() {
 
@@ -399,14 +361,30 @@ void updateState() {
 /**
 Render scene
 */
-void mainRender() {
+void renderScene() {
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor4f(0.4f,0.4f,0.4f,1.0f);
+
 	updateState();
-	renderScene();
+
+	/*
+	 * Anything that needs to be rendered have to be inside this
+	 */
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	updateCam();
+	renderFloor();
+	rock->Draw();
+
+	/*
+	 * End Rendering
+	 */
+
+
 	glFlush();
 	glutPostRedisplay();
 	Sleep(30);
-
-	rock->Draw();
 }
 
 /**
@@ -555,7 +533,7 @@ int main(int argc, char **argv) {
 	*/
 	mainWindowId = glutCreateWindow("FPS");
 
-	glutDisplayFunc(mainRender);
+	glutDisplayFunc(renderScene);
 
 	glutReshapeFunc(onWindowReshape);
 

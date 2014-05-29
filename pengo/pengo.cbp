@@ -47,19 +47,21 @@
 			<Add after='cmd /c copy &quot;..\depend\dll\*&quot; &quot;$(PROJECT_DIR)$(TARGET_OUTPUT_DIR)&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
-		<Unit filename="src/Rock.cpp" />
-		<Unit filename="src/Rock.h" />
-		<Unit filename="src/Texture.cpp" />
-		<Unit filename="src/Texture.h" />
-		<Unit filename="src/bitmap.c">
+		<Unit filename="Rock.cpp" />
+		<Unit filename="Rock.h" />
+		<Unit filename="Sounds.cpp" />
+		<Unit filename="Sounds.h" />
+		<Unit filename="Texture.cpp" />
+		<Unit filename="Texture.h" />
+		<Unit filename="bitmap.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/bitmap.h" />
-		<Unit filename="src/glm.cpp" />
-		<Unit filename="src/glm.h" />
-		<Unit filename="src/glmimg.cpp" />
-		<Unit filename="src/main.cpp" />
-		<Unit filename="src/vector3f.h" />
+		<Unit filename="bitmap.h" />
+		<Unit filename="glm.cpp" />
+		<Unit filename="glm.h" />
+		<Unit filename="glmimg.cpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="vector3f.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
