@@ -201,3 +201,138 @@
 	<stdio.h>
 	<al/alut.h>
 
+1401361634 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\bitmap.c
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+	"bitmap.h"
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\pengo\bitmap.h
+	<windows.h>
+	<wingdi.h>
+	<GL/glut.h>
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\depend\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\depend\include\gl\gl.h
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\depend\include\gl\glu.h
+	<GL/gl.h>
+
+1401361634 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\glm.cpp
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\pengo\glm.h
+	<GLUT/glut.h>
+	<windows.h>
+	<gl/gl.h>
+	<gl/glut.h>
+
+1401361634 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\glmimg.cpp
+	<string.h>
+	<math.h>
+	"Texture.h"
+	<windows.h>
+	<GL/gl.h>
+	"glm.h"
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\pengo\texture.h
+	<windows.h>
+	<windowsx.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/glut.h>
+	<math.h>
+
+1403909908 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\main.cpp
+	<iostream>
+	"Stage.h"
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<cmath>
+	<iostream>
+	<gl/glut.h>
+	<al/alut.h>
+	"bitmap.h"
+	"Rock.h"
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\depend\include\al\alut.h
+	<al/alc.h>
+	<al/al.h>
+	<OpenAL/alc.h>
+	<OpenAL/al.h>
+	<AL/al.h>
+	<AL/alc.h>
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\depend\include\al\alc.h
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\depend\include\al\al.h
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\pengo\rock.h
+	"glm.h"
+	<string>
+	<stdio.h>
+
+1401361634 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\rock.cpp
+	"rock.h"
+
+1401361634 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\sounds.cpp
+	"Sounds.h"
+
+1401361634 c:\documents and settings\administrator\desktop\pengo-master\pengo\sounds.h
+	<windows.h>
+	<stdio.h>
+	<al/alut.h>
+
+1401361634 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\texture.cpp
+	"Texture.h"
+
+1403871794 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\entitys.cpp
+	"Entity.h"
+
+1403910761 c:\documents and settings\administrator\desktop\pengo-master\pengo\entity.h
+
+1403876835 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\entity.cpp
+	"Entity.h"
+
+1403905173 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\item.cpp
+	"Entity.h"
+
+1403877182 c:\documents and settings\administrator\desktop\pengo-master\pengo\item.h
+	"Entity.h"
+
+1403905173 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\mainchar.cpp
+	"Entity.h"
+
+1403899581 c:\documents and settings\administrator\desktop\pengo-master\pengo\mainchar.h
+	"Entity.h"
+
+1403908538 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\block.cpp
+	"Entity.h"
+
+1403877372 c:\documents and settings\administrator\desktop\pengo-master\pengo\block.h
+	"Entity.h"
+
+1403905173 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\enemy.cpp
+	"Entity.h"
+
+1403877264 c:\documents and settings\administrator\desktop\pengo-master\pengo\enemy.h
+	"Entity.h"
+
+1403910670 c:\documents and settings\administrator\desktop\pengo-master\pengo\stage.h
+	"Entity.h"
+	<vector>
+
+1403906768 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\stage.cpp
+	"Stage.h"
+

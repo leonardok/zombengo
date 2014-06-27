@@ -2,7 +2,8 @@
 Implementa a movimentação simples de uma camera em primeira pessoa para um personagem que anda
 sobre um plano.
 */
-
+#include <iostream>
+#include "Stage.h"
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -84,9 +85,9 @@ float speedX = 0.0f;
 float speedY = 0.0f;
 float speedZ = 0.0f;
 
-float posX = 0.0f;
+float posX = 2.0f;
 float posY = 0.4f;
-float posZ = 15.0f;
+float posZ = 2.0f;
 
 /*
 variavel auxiliar pra dar variação na altura do ponto de vista ao andar.
@@ -523,6 +524,14 @@ void mainIdle() {
 }
 
 int main(int argc, char **argv) {
+
+Stage s(5);
+MainChar mc;
+mc.setCellX(2);
+s.stage[2][2] = mc;
+std::cout<<s.stage[2][2].getCellX()<<std::endl;
+
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
 	glutInitWindowSize(windowWidth,windowHeight);
