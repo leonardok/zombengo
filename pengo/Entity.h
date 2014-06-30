@@ -37,13 +37,15 @@ public:
     int getCellX(void);
     int getCellY(void);
 
-    C3DObject model;
     float speed;
     int cellX, cellY;
     float posX, posY, posZ;
     float rotateangle;
     float originX, originY , originZ;
     float deslX, deslZ;
+
+    C3DObject model;
+    char *model_file_path;
 
 };
 

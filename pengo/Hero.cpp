@@ -18,6 +18,12 @@ void Hero::setCoordinates(float x, float y, float z)
     this->setZ(z);
 }
 
+void Hero::setModelPath(char *file_path)
+{
+    this->model_file_path = file_path;
+    this->model.Load(this->model_file_path);
+}
+
 /**
  * Hero::walkForward
  *

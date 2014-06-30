@@ -101,9 +101,9 @@ float speedX = 0.0f;
 float speedY = 0.0f;
 float speedZ = 0.0f;
 
-float posX = 2.0f;
-float posY = 0.0f;
-float posZ = 2.0f;
+float posX = 0.0f;
+float posY = 4.0f;
+float posZ = 4.0f;
 
 /*
 variavel auxiliar pra dar variação na altura do ponto de vista ao andar.
@@ -178,9 +178,18 @@ void setWindow() {
 /**
 Atualiza a posição e orientação da camera
 */
-void updateCam() {
+void updateCam()
+{
     float posX = hero->getX();
     float posZ = hero->getZ();
+    float heroAngle = hero->getRotation();
+
+    float distance = 20.0;      // Straight line distance between the camera and look at point
+
+    // Calculate the camera position using the distance and angles
+    float camX = posX + distance * -cosf(heroAngle * (M_PI/180));
+    float camY = posY;
+    float camZ = posZ + distance * -sinf(heroAngle * (M_PI/180));
 
     /**
        void gluLookAt( GLdouble eyeX,      \
@@ -193,9 +202,9 @@ void updateCam() {
                        GLdouble upY,        |- Up vector
                        GLdouble upZ )      /
      */
-	gluLookAt(posX,
-           posY + 0.025 * std::abs(sin(headPosAux*PI/180))+0.7,
-           posZ,
+	gluLookAt(camX,
+           camY,
+           camZ,
            posX + cos(hero->getRotation()*PI/180),
            posY + 0.5,
            posZ + sin(hero->getRotation()*PI/180),
@@ -267,6 +276,7 @@ void mainInit() {
     // hero
     hero = new Hero();
     hero->setCoordinates(0, 0, 0);
+    hero->setModelPath(hero_model);
 
 	printf("w - andar \n");
 	printf("s - ir pra tras \n");
@@ -481,6 +491,7 @@ void renderScene() {
 	updateCam();
 
     e.Draw();
+    hero->Draw();
 
     // sets the bmp file already loaded to the OpenGL parameters
     setTextureToOpengl();

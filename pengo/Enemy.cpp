@@ -2,8 +2,7 @@
 
 Enemy::Enemy()
 {
-
-model.Init();
-//model.Load("./penguin.obj");
-model.Draw(2);
+    model.Init();
+    //model.Load("./penguin.obj");
+    model.Draw(2);
 }

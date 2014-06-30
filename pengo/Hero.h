@@ -20,6 +20,8 @@ class Hero : public Entity
         void rotateLeft();
         void walkForward();
 
+        void setModelPath(char *);
+
         void update();
 
     protected:
