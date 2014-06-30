@@ -9,6 +9,12 @@
 //openal (sound lib)
 #include <al/alut.h>
 
+#include "config.h"
+
+#include "Hero.h"
+#include "Entity.h"
+#include "Enemy.h"
+
 //bitmap class to load bitmaps for textures
 #include "bitmap.h"
 #include "Stage.h"
@@ -57,6 +63,12 @@ void updateCam();
 void setTextureToOpengl();
 
 /**
+Characters
+*/
+Enemy e;
+Hero *hero;
+
+/**
 Screen dimensions
 */
 int windowWidth = 600;
@@ -89,7 +101,7 @@ float speedX = 0.0f;
 float speedY = 0.0f;
 float speedZ = 0.0f;
 
-float posX = 0.0f;
+float posX = 2.0f;
 float posY = 0.0f;
 float posZ = 2.0f;
 
@@ -158,8 +170,8 @@ void setWindow() {
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(posX,posY + posYOffset + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
-		posX + sin(roty*PI/180),posY + posYOffset + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
+	gluLookAt(posX,posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
+		posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
 		0.0,1.0,0.0);
 }
 
@@ -167,10 +179,29 @@ void setWindow() {
 Atualiza a posição e orientação da camera
 */
 void updateCam() {
+    float posX = hero->getX();
+    float posZ = hero->getZ();
 
-	gluLookAt(posX,posY + posYOffset + 0.025 * std::abs(sin(headPosAux*PI/180))+0.7,posZ,
-		posX + sin(roty*PI/180),posY + posYOffset + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
-		0.0,1.0,0.0);
+    /**
+       void gluLookAt( GLdouble eyeX,      \
+                       GLdouble eyeY,       |- Camera position
+                       GLdouble eyeZ,      /
+                       GLdouble centerX,   \
+                       GLdouble centerY,    |- Where the camera is pointing to
+                       GLdouble centerZ,   /
+                       GLdouble upX,       \
+                       GLdouble upY,        |- Up vector
+                       GLdouble upZ )      /
+     */
+	gluLookAt(posX,
+           posY + 0.025 * std::abs(sin(headPosAux*PI/180))+0.7,
+           posZ,
+           posX + cos(hero->getRotation()*PI/180),
+           posY + 0.5,
+           posZ + sin(hero->getRotation()*PI/180),
+           0.0,
+           1.5,
+           0.0);
 
 	// atualiza a posição do listener e da origen do som, são as mesmas da camera, já que os passos vem de onde o personagem está
 	listenerPos[0] = posX;
@@ -182,8 +213,6 @@ void updateCam() {
 
     GLfloat light_position1[] = {0.0,2.0,0.0, 0.5 };
     glLightfv(GL_LIGHT0, GL_POSITION, light_position1);
-
-
 }
 
 void initLight() {
@@ -234,6 +263,10 @@ void mainInit() {
 	initLight();
 
 	enableFog();
+
+    // hero
+    hero = new Hero();
+    hero->setCoordinates(0, 0, 0);
 
 	printf("w - andar \n");
 	printf("s - ir pra tras \n");
@@ -350,7 +383,7 @@ void initTexture(void)
             rgbaptr[3] = (ptr[0] + ptr[1] + ptr[2]) / 3;
     }
 
-    /*
+
 	// Set texture parameters
 	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -360,24 +393,10 @@ void initTexture(void)
 
     glTexImage2D(type, 0, 4, info->bmiHeader.biWidth, info->bmiHeader.biHeight,
                   0, GL_RGBA, GL_UNSIGNED_BYTE, rgba );
-    */
+
 
     printf("Textura %d\n", texture);
 	printf("Textures ok.\n\n", texture);
-
-    glColor4f(0.8f,0.8f,0.8f,1.0f);
-	glBegin(GL_LINES);
-	for (int i = 0; i <= 10; i++) {
-		glVertex3f(-planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
-		glVertex3f(planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
-	}
-	for (int i = 0; i <= 10; i++) {
-		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, -planeSize);
-		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, planeSize);
-	}
-	glEnd();
-
-
 }
 
 /**
@@ -402,7 +421,7 @@ void setTextureToOpengl(void)
 void enableFog(void)
 {
 }
-Enemy e;
+
 void renderFloor() {
 	// set things up to render the floor with the texture
 	glShadeModel(GL_SMOOTH);
@@ -431,32 +450,24 @@ void renderFloor() {
 
     glEnd();
 
-  /*  for (int i = 0; i < xQuads; i++) {
-        for (int j = 0; j < zQuads; j++) {
-            glBegin(GL_QUADS);
-                glTexCoord2f(1.0f, 0.0f);   // coords for the texture
-                glNormal3f(0.0f,1.0f,0.0f);
-                glVertex3f(i * (float)planeSize/xQuads, 0.0f, (j+1) * (float)planeSize/zQuads);
 
-                glTexCoord2f(0.0f, 0.0f);  // coords for the texture
-                glNormal3f(0.0f,1.0f,0.0f);
-                glVertex3f((i+1) * (float)planeSize/xQuads, 0.0f, (j+1) * (float)planeSize/zQuads);
+    /**
+     * Draw lines on the floor
+     * They have an y offset to avoid z-fighting
+     */
+    glColor4f(0.8f,0.8f,0.8f,1.0f);
+	glBegin(GL_LINES);
+	for (int i = 0; i <= 10; i++) {
+		glVertex3f(-planeSize, 0.001f, -planeSize + i*(2*planeSize)/10.0f);
+		glVertex3f(planeSize, 0.001f, -planeSize + i*(2*planeSize)/10.0f);
+	}
+	for (int i = 0; i <= 10; i++) {
+		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.001f, -planeSize);
+		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.001f, planeSize);
+	}
+	glEnd();
 
-                glTexCoord2f(0.0f, 1.0f);  // coords for the texture
-                glNormal3f(0.0f,1.0f,0.0f);
-                glVertex3f((i+1) * (float)planeSize/xQuads, 0.0f, j * (float)planeSize/zQuads);
-
-                glTexCoord2f(1.0f, 1.0f);  // coords for the texture
-                glNormal3f(0.0f,1.0f,0.0f);
-                glVertex3f(i * (float)planeSize/xQuads, 0.0f, j * (float)planeSize/zQuads);
-
-            glEnd();
-        }
-    }
-*/
 	glDisable(type);
-
-
 	glPopMatrix();
 }
 
@@ -478,30 +489,16 @@ void renderScene() {
 }
 
 void updateState() {
-
-	if (upPressed || downPressed) {
-
-		if (running) {
-			speedX = 0.05 * sin(roty*PI/180) * 2;
-			speedZ = -0.05 * cos(roty*PI/180) * 2;
-		} else {
-			speedX = 0.05 * sin(roty*PI/180);
-			speedZ = -0.05 * cos(roty*PI/180);
-		}
-
+	if (upPressed) {
 		// efeito de "sobe e desce" ao andar
-		headPosAux += 8.5f;
+		/*
+		headPosAux += 7.0f;
 		if (headPosAux > 180.0f) {
 			headPosAux = 0.0f;
 		}
+		*/
 
-        if (upPressed) {
-            posX += speedX;
-            posZ += speedZ;
-        } else {
-            posX -= speedX;
-            posZ -= speedZ;
-        }
+        hero->walkForward();
 
 	} else {
 		// parou de andar, para com o efeito de "sobe e desce"
@@ -512,27 +509,6 @@ void updateState() {
 		}
 	}
 
-	posY += speedY;
-	if (posY < heightLimit) {
-		posY = heightLimit;
-		speedY = 0.0f;
-		jumping = false;
-	} else {
-		speedY -= gravity;
-	}
-
-	if (crouched) {
-		posYOffset -= 0.01;
-		if (posYOffset < 0.1) {
-			posYOffset = 0.1;
-		}
-	} else {
-		posYOffset += 0.01;
-		if (posYOffset > 0.2) {
-			posYOffset = 0.2;
-		}
-	}
-
 }
 
 /**
@@ -540,6 +516,10 @@ Render scene
 */
 void mainRender() {
 	updateState();
+
+    // update hero position (rotation...)
+	hero->update();
+
 	renderScene();
 	glFlush();
 	glutPostRedisplay();
@@ -633,10 +613,10 @@ void onKeyDown(unsigned char key, int x, int y) {
 			downPressed = true;
 			break;
 		case 97: //a
-			leftPressed = true;
+			hero->rotateLeft();
 			break;
 		case 100: //d
-			rightPressed = true;
+			hero->rotateRight();
 			break;
 		case 99: //c
 			crouched = true;
@@ -667,12 +647,6 @@ void onKeyUp(unsigned char key, int x, int y) {
 			break;
 		case 115: //s
 			downPressed = false;
-			break;
-		case 97: //a
-			leftPressed = false;
-			break;
-		case 100: //d
-			rightPressed = false;
 			break;
 		case 99: //c
 			crouched = false;
@@ -711,7 +685,10 @@ void mainIdle() {
 	glutPostRedisplay();
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
+    config_debug = true;
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(windowWidth,windowHeight);

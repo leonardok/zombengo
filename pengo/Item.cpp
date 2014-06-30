@@ -1,1 +1,11 @@
-#include "Entity.h"
+#include "Item.h"
+
+Item::Item()
+{
+    //ctor
+}
+
+Item::~Item()
+{
+    //dtor
+}

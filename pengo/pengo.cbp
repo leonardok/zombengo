@@ -53,6 +53,8 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Block.h" />
+		<Unit filename="EmptyCell.cpp" />
+		<Unit filename="EmptyCell.h" />
 		<Unit filename="Enemy.cpp" />
 		<Unit filename="Enemy.h" />
 		<Unit filename="Entity.cpp" />
@@ -69,6 +71,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="bitmap.h" />
+		<Unit filename="config.h" />
 		<Unit filename="glm.cpp" />
 		<Unit filename="glm.h" />
 		<Unit filename="glmimg.cpp" />

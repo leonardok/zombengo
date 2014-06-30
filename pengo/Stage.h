@@ -1,14 +1,23 @@
-#include "Entity.h"
+#ifndef STAGE_H
+#define STAGE_H
+
 #include<vector>
+
+#include "Entity.h"
+#include "EmptyCell.h"
+
+
 class Stage
 {
-float stagesizeX, stagesizeY;
+    float stagesizeX, stagesizeY;
+
 public:
-std::vector<std::vector<Entity> > stage;
-Stage(float x, float y);
-void setStagesize(float x, float y);
-float getStagesizeX();
-float getStagesizeY();
+    std::vector<std::vector<Entity> > stage;
+    Stage(float x, float y);
+    void setStagesize(float x, float y);
+    float getStagesizeX();
+    float getStagesizeY();
+
 /*
 Caso as colisões sejam tradadas pelo Stage
 
@@ -29,3 +38,5 @@ void collide(Enemy enemy0, Enemy enemy1);
 */
 
 };
+
+#endif // STAGE_H

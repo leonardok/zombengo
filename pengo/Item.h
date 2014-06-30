@@ -1,5 +1,16 @@
+#ifndef ITEM_H
+#define ITEM_H
+
 #include "Entity.h"
-class Item:Entity
+
+
+class Item : public Entity
 {
-    Item();
+    public:
+        Item();
+        virtual ~Item();
+    protected:
+    private:
 };
+
+#endif // ITEM_H

@@ -469,10 +469,11 @@
 1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\gl\glu.h
 	<GL/gl.h>
 
-1403908538 source:c:\users\korndorl\projects\faculdade\pengo\pengo\block.cpp
-	"Entity.h"
+1404096736 source:c:\users\korndorl\projects\faculdade\pengo\pengo\block.cpp
+	"Block.h"
 
-1404095129 c:\users\korndorl\projects\faculdade\pengo\pengo\entity.h
+1404102620 c:\users\korndorl\projects\faculdade\pengo\pengo\entity.h
+	<math.h>
 	"3DObject.h"
 
 1404095129 c:\users\korndorl\projects\faculdade\pengo\pengo\3dobject.h
@@ -485,10 +486,10 @@
 	<GL/gl.h>
 	<GL/glut.h>
 
-1404095129 source:c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.cpp
-	"Entity.h"
+1404096870 source:c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.cpp
+	"Enemy.h"
 
-1404095129 source:c:\users\korndorl\projects\faculdade\pengo\pengo\entity.cpp
+1404102799 source:c:\users\korndorl\projects\faculdade\pengo\pengo\entity.cpp
 	"Entity.h"
 
 1404095129 source:c:\users\korndorl\projects\faculdade\pengo\pengo\glm.cpp
@@ -515,10 +516,10 @@
 	<GL/glut.h>
 	<math.h>
 
-1403905173 source:c:\users\korndorl\projects\faculdade\pengo\pengo\item.cpp
-	"Entity.h"
+1404096696 source:c:\users\korndorl\projects\faculdade\pengo\pengo\item.cpp
+	"Item.h"
 
-1404095207 source:c:\users\korndorl\projects\faculdade\pengo\pengo\main.cpp
+1404103137 source:c:\users\korndorl\projects\faculdade\pengo\pengo\main.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -527,6 +528,10 @@
 	<iostream>
 	<gl/glut.h>
 	<al/alut.h>
+	"config.h"
+	"Hero.h"
+	"Entity.h"
+	"Enemy.h"
 	"bitmap.h"
 	"Stage.h"
 	"3DObject.h"
@@ -543,14 +548,15 @@
 
 1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\al\al.h
 
-1404095129 c:\users\korndorl\projects\faculdade\pengo\pengo\stage.h
-	"Entity.h"
+1404097579 c:\users\korndorl\projects\faculdade\pengo\pengo\stage.h
 	<vector>
+	"Entity.h"
+	"EmptyCell.h"
 
 1403905173 source:c:\users\korndorl\projects\faculdade\pengo\pengo\mainchar.cpp
 	"Entity.h"
 
-1404095129 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
+1404097432 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
 	"Stage.h"
 
 1398812012 source:c:\users\korndorl\projects\faculdade\pengo\pengo\texture.cpp
@@ -559,4 +565,29 @@
 1404095129 source:c:\users\korndorl\projects\faculdade\pengo\pengo\3dobject.cpp
 	"3DObject.h"
 	<malloc.h>
+
+1404103847 source:c:\users\korndorl\projects\faculdade\pengo\pengo\hero.cpp
+	"Hero.h"
+
+1404103068 c:\users\korndorl\projects\faculdade\pengo\pengo\hero.h
+	<iostream>
+	<math.h>
+	"Entity.h"
+
+1404096736 c:\users\korndorl\projects\faculdade\pengo\pengo\block.h
+	"Entity.h"
+
+1404097334 c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.h
+	"Entity.h"
+
+1404096746 c:\users\korndorl\projects\faculdade\pengo\pengo\item.h
+	"Entity.h"
+
+1404097509 c:\users\korndorl\projects\faculdade\pengo\pengo\emptycell.h
+	"Entity.h"
+
+1404097509 source:c:\users\korndorl\projects\faculdade\pengo\pengo\emptycell.cpp
+	"EmptyCell.h"
+
+1404098652 c:\users\korndorl\projects\faculdade\pengo\pengo\config.h
 

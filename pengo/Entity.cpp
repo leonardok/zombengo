@@ -18,25 +18,36 @@ void Entity::setSpeed(float s)
     speed = s;
 }
 
-void Entity::setPosX(float x)
+void Entity::setX(float x)
 {
     posX = x;
 }
 
-void Entity::setPosY(float y)
+void Entity::setY(float y)
 {
     posY = y;
 }
 
-float Entity::getPosX(void)
+void Entity::setZ(float z)
+{
+    posZ = z;
+}
+
+float Entity::getX(void)
 {
     return posX;
 }
 
-float Entity::getPosY(void)
+float Entity::getY(void)
 {
     return posY;
 }
+
+float Entity::getZ(void)
+{
+    return posZ;
+}
+
 
 void Entity::setCellX(int x)
 {
@@ -56,6 +67,12 @@ int Entity::getCellX()
 int Entity::getCellY()
 {
     return cellY;
+}
+
+void Entity::rotate(int degrees)
+{
+    rotateangle += degrees;
+    rotateangle = fmod(rotateangle, 360);
 }
 
 void Entity::rotateLeft()
