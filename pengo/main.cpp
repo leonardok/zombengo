@@ -365,6 +365,19 @@ void initTexture(void)
     printf("Textura %d\n", texture);
 	printf("Textures ok.\n\n", texture);
 
+    glColor4f(0.8f,0.8f,0.8f,1.0f);
+	glBegin(GL_LINES);
+	for (int i = 0; i <= 10; i++) {
+		glVertex3f(-planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
+		glVertex3f(planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
+	}
+	for (int i = 0; i <= 10; i++) {
+		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, -planeSize);
+		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, planeSize);
+	}
+	glEnd();
+
+
 }
 
 /**
@@ -624,7 +637,6 @@ void onKeyDown(unsigned char key, int x, int y) {
 			break;
 		case 100: //d
 			rightPressed = true;
-			rotateRight = true;
 			break;
 		case 99: //c
 			crouched = true;

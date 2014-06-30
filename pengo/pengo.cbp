@@ -47,18 +47,20 @@
 			<Add after='cmd /c copy &quot;..\depend\dll\*&quot; &quot;$(PROJECT_DIR)$(TARGET_OUTPUT_DIR)&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="3DObject.cpp" />
+		<Unit filename="3DObject.h" />
 		<Unit filename="Block.cpp">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Block.h" />
 		<Unit filename="Enemy.cpp" />
+		<Unit filename="Enemy.h" />
 		<Unit filename="Entity.cpp" />
 		<Unit filename="Entity.h" />
+		<Unit filename="Hero.cpp" />
+		<Unit filename="Hero.h" />
 		<Unit filename="Item.cpp" />
-		<Unit filename="MainChar.cpp" />
-		<Unit filename="Rock.cpp" />
-		<Unit filename="Rock.h" />
-		<Unit filename="Sounds.cpp" />
-		<Unit filename="Sounds.h" />
+		<Unit filename="Item.h" />
 		<Unit filename="Stage.cpp" />
 		<Unit filename="Stage.h" />
 		<Unit filename="Texture.cpp" />
@@ -71,7 +73,6 @@
 		<Unit filename="glm.h" />
 		<Unit filename="glmimg.cpp" />
 		<Unit filename="main.cpp" />
-		<Unit filename="vector3f.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

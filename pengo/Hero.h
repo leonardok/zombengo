@@ -1,7 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
 
-#include <Entity.h>
+#include "Entity.h"
 
 
 class Hero : public Entity
