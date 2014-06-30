@@ -14,8 +14,6 @@ class Hero : public Entity
         Hero();
         virtual ~Hero();
 
-        void setCoordinates(float, float, float);
-
         void rotateRight();
         void rotateLeft();
         void walkForward();

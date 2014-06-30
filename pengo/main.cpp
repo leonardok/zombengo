@@ -730,7 +730,7 @@ int main(int argc, char **argv)
    //-------------------------------------
     //'e' é do tipo Enemy
     e.model.Load("res/objs/penguin.obj");
-    e.setOrigin(5.0, 5.0);
+    e.setCoordinates(5.0, 0.0, 5.0);
     e.rotateRight();
     //-------------------------------------
 

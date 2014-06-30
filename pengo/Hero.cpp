@@ -11,13 +11,6 @@ Hero::~Hero()
     //dtor
 }
 
-void Hero::setCoordinates(float x, float y, float z)
-{
-    this->setX(x);
-    this->setY(y);
-    this->setZ(z);
-}
-
 void Hero::setModelPath(char *file_path)
 {
     this->model_file_path = file_path;
@@ -39,6 +32,8 @@ void Hero::walkForward()
 
     this->posX += round(cos(radians));
     this->posZ += round(sin(radians));
+
+    this->setCoordinates(this->posX, this->posY, this->posZ);
 
     if(config_debug)
         std::cout << "Hero::walkForward - angle:" << this->getRotation() << " degrees\n";
