@@ -448,13 +448,13 @@
 1398812012 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\texture.cpp
 	"Texture.h"
 
-1404095129 source:c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.c
+1404155212 source:c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.c
 	"bitmap.h"
 	<stdio.h>
 	<stdlib.h>
 	<errno.h>
 
-1404095129 c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.h
+1404142676 c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.h
 	<GL/glut.h>
 	<windows.h>
 	<wingdi.h>
@@ -469,10 +469,10 @@
 1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\gl\glu.h
 	<GL/gl.h>
 
-1404096736 source:c:\users\korndorl\projects\faculdade\pengo\pengo\block.cpp
+1404104146 source:c:\users\korndorl\projects\faculdade\pengo\pengo\block.cpp
 	"Block.h"
 
-1404102620 c:\users\korndorl\projects\faculdade\pengo\pengo\entity.h
+1404141054 c:\users\korndorl\projects\faculdade\pengo\pengo\entity.h
 	<math.h>
 	"3DObject.h"
 
@@ -486,10 +486,10 @@
 	<GL/gl.h>
 	<GL/glut.h>
 
-1404096870 source:c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.cpp
+1404141054 source:c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.cpp
 	"Enemy.h"
 
-1404102799 source:c:\users\korndorl\projects\faculdade\pengo\pengo\entity.cpp
+1404141054 source:c:\users\korndorl\projects\faculdade\pengo\pengo\entity.cpp
 	"Entity.h"
 
 1404095129 source:c:\users\korndorl\projects\faculdade\pengo\pengo\glm.cpp
@@ -516,10 +516,10 @@
 	<GL/glut.h>
 	<math.h>
 
-1404096696 source:c:\users\korndorl\projects\faculdade\pengo\pengo\item.cpp
+1404104146 source:c:\users\korndorl\projects\faculdade\pengo\pengo\item.cpp
 	"Item.h"
 
-1404103137 source:c:\users\korndorl\projects\faculdade\pengo\pengo\main.cpp
+1404153077 source:c:\users\korndorl\projects\faculdade\pengo\pengo\main.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -532,6 +532,7 @@
 	"Hero.h"
 	"Entity.h"
 	"Enemy.h"
+	"Map.h"
 	"bitmap.h"
 	"Stage.h"
 	"3DObject.h"
@@ -548,7 +549,7 @@
 
 1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\al\al.h
 
-1404097579 c:\users\korndorl\projects\faculdade\pengo\pengo\stage.h
+1404104146 c:\users\korndorl\projects\faculdade\pengo\pengo\stage.h
 	<vector>
 	"Entity.h"
 	"EmptyCell.h"
@@ -556,38 +557,51 @@
 1403905173 source:c:\users\korndorl\projects\faculdade\pengo\pengo\mainchar.cpp
 	"Entity.h"
 
-1404097432 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
+1404154835 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
 	"Stage.h"
 
 1398812012 source:c:\users\korndorl\projects\faculdade\pengo\pengo\texture.cpp
 	"Texture.h"
 
-1404095129 source:c:\users\korndorl\projects\faculdade\pengo\pengo\3dobject.cpp
+1404138984 source:c:\users\korndorl\projects\faculdade\pengo\pengo\3dobject.cpp
 	"3DObject.h"
 	<malloc.h>
 
-1404103847 source:c:\users\korndorl\projects\faculdade\pengo\pengo\hero.cpp
+1404141054 source:c:\users\korndorl\projects\faculdade\pengo\pengo\hero.cpp
 	"Hero.h"
 
-1404103068 c:\users\korndorl\projects\faculdade\pengo\pengo\hero.h
+1404141054 c:\users\korndorl\projects\faculdade\pengo\pengo\hero.h
 	<iostream>
 	<math.h>
 	"Entity.h"
 
-1404096736 c:\users\korndorl\projects\faculdade\pengo\pengo\block.h
+1404104146 c:\users\korndorl\projects\faculdade\pengo\pengo\block.h
 	"Entity.h"
 
-1404097334 c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.h
+1404104146 c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.h
 	"Entity.h"
 
-1404096746 c:\users\korndorl\projects\faculdade\pengo\pengo\item.h
+1404104146 c:\users\korndorl\projects\faculdade\pengo\pengo\item.h
 	"Entity.h"
 
-1404097509 c:\users\korndorl\projects\faculdade\pengo\pengo\emptycell.h
+1404104146 c:\users\korndorl\projects\faculdade\pengo\pengo\emptycell.h
 	"Entity.h"
 
-1404097509 source:c:\users\korndorl\projects\faculdade\pengo\pengo\emptycell.cpp
+1404104146 source:c:\users\korndorl\projects\faculdade\pengo\pengo\emptycell.cpp
 	"EmptyCell.h"
 
-1404098652 c:\users\korndorl\projects\faculdade\pengo\pengo\config.h
+1404155113 c:\users\korndorl\projects\faculdade\pengo\pengo\config.h
+	<windows.h>
+	"bitmap.h"
+
+1404156098 source:c:\users\korndorl\projects\faculdade\pengo\pengo\map.cpp
+	"Map.h"
+
+1404154633 c:\users\korndorl\projects\faculdade\pengo\pengo\map.h
+	<windows.h>
+	<iostream>
+	"bitmap.h"
+
+1404152484 source:c:\users\korndorl\projects\faculdade\pengo\pengo\config.cpp
+	"config.h"
 

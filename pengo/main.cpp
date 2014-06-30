@@ -159,7 +159,7 @@ float posYOffset = 0.2;
 float backgrundColor[4] = {0.0f,0.0f,0.0f,1.0f};
 
 C3DObject cObj;
-Stage stage(20, 10);
+Stage stage(40, 40);
 //CModelAl modelAL;
 
 void setWindow() {
@@ -212,14 +212,6 @@ void updateCam()
            1.5,
            0.0);
 
-	// atualiza a posição do listener e da origen do som, são as mesmas da camera, já que os passos vem de onde o personagem está
-	listenerPos[0] = posX;
-	listenerPos[1] = posY;
-	listenerPos[2] = posZ;
-	source0Pos[0] = posX;
-	source0Pos[1] = posY;
-	source0Pos[2] = posZ;
-
     GLfloat light_position1[] = {0.0,2.0,0.0, 0.5 };
     glLightfv(GL_LIGHT0, GL_POSITION, light_position1);
 }
@@ -262,8 +254,6 @@ void mainInit() {
 
 	// habilita o z-buffer
 	glEnable(GL_DEPTH_TEST);
-
-    initSound();
 
     initTexture();
 
