@@ -617,3 +617,145 @@
 1404158693 c:\users\korndorl\projects\faculdade\pengo\pengo\crate.h
 	"Entity.h"
 
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\3dobject.cpp
+	"3DObject.h"
+	<malloc.h>
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\3dobject.h
+	<string.h>
+	"glm.h"
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\glm.h
+	<GLUT/glut.h>
+	<windows.h>
+	<GL/gl.h>
+	<GL/glut.h>
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\depend\include\gl\gl.h
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\depend\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\depend\include\gl\glu.h
+	<GL/gl.h>
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\bitmap.c
+	"bitmap.h"
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\bitmap.h
+	<GL/glut.h>
+	<windows.h>
+	<wingdi.h>
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\block.cpp
+	"Block.h"
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\block.h
+	"Entity.h"
+
+1404154988 c:\documents and settings\paulo\desktop\pengo\pengo\entity.h
+	<math.h>
+	"3DObject.h"
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\emptycell.cpp
+	"EmptyCell.h"
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\emptycell.h
+	"Entity.h"
+
+1404156195 source:c:\documents and settings\paulo\desktop\pengo\pengo\enemy.cpp
+	"Enemy.h"
+	<iostream>
+
+1404156435 c:\documents and settings\paulo\desktop\pengo\pengo\enemy.h
+	"Entity.h"
+
+1404155326 source:c:\documents and settings\paulo\desktop\pengo\pengo\entity.cpp
+	"Entity.h"
+	<iostream>
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\glm.cpp
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\glmimg.cpp
+	<string.h>
+	<math.h>
+	"Texture.h"
+	<windows.h>
+	<GL/gl.h>
+	"glm.h"
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\texture.h
+	<windows.h>
+	<windowsx.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/glut.h>
+	<math.h>
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\hero.cpp
+	"Hero.h"
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\hero.h
+	<iostream>
+	<math.h>
+	"Entity.h"
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\item.cpp
+	"Item.h"
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\item.h
+	"Entity.h"
+
+1404156259 source:c:\documents and settings\paulo\desktop\pengo\pengo\main.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<cmath>
+	<iostream>
+	<gl/glut.h>
+	<al/alut.h>
+	"config.h"
+	"Hero.h"
+	"Entity.h"
+	"Enemy.h"
+	"bitmap.h"
+	"Stage.h"
+	"3DObject.h"
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\depend\include\al\alut.h
+	<al/alc.h>
+	<al/al.h>
+	<OpenAL/alc.h>
+	<OpenAL/al.h>
+	<AL/al.h>
+	<AL/alc.h>
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\depend\include\al\alc.h
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\depend\include\al\al.h
+
+1404151615 c:\documents and settings\paulo\desktop\pengo\pengo\config.h
+
+1404149601 c:\documents and settings\paulo\desktop\pengo\pengo\stage.h
+	<vector>
+	"Entity.h"
+	"EmptyCell.h"
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\stage.cpp
+	"Stage.h"
+
+1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\texture.cpp
+	"Texture.h"
+

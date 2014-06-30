@@ -1,5 +1,5 @@
 #include "Entity.h"
-
+#include<iostream>
 Entity::Entity()
 {
     rotateangle = 00.0;
@@ -59,9 +59,9 @@ void Entity::setCellX(int x)
     cellX = x;
 }
 
-void Entity::setCellY(int y)
+void Entity::setCellZ(int z)
 {
-    cellY = y;
+    cellZ = z;
 }
 
 int Entity::getCellX()
@@ -69,9 +69,9 @@ int Entity::getCellX()
     return cellX;
 }
 
-int Entity::getCellY()
+int Entity::getCellZ()
 {
-    return cellY;
+    return cellZ;
 }
 
 void Entity::rotate(int degrees)
@@ -80,17 +80,17 @@ void Entity::rotate(int degrees)
     rotateangle = fmod(rotateangle, 360);
 }
 
-void Entity::rotateLeft()
+void Entity::turnLeft()
 {
     rotateangle+=90;
 }
 
-void Entity::rotateBack()
+void Entity::turnBack()
 {
     rotateangle+=180;
 }
 
-void Entity::rotateRight()
+void Entity::turnRight()
 {
     rotateangle+=270;
 }
@@ -110,4 +110,32 @@ void Entity::Draw()
 
     model.Draw(2);
     glPopMatrix();
+}
+
+void Entity::movement()
+{
+        int rot = getRotation();
+        if(moving)
+        {
+
+            switch(rot)
+            {
+            case 0:
+                posX+= 0.1;
+                break;
+            case 90:
+                posZ+=0.1;
+                break;
+            case 180:
+                posX+= -0.1;
+                break;
+            case 270:
+                posZ+= -0.1;
+                break;
+            }
+            cellX = floor(posX);
+            cellZ = floor(posZ);
+
+            std::cout<<posX<<" "<<posZ<<std::endl;
+        }
 }

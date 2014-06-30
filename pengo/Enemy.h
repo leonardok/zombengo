@@ -7,6 +7,7 @@ class Enemy: public Entity
 {
 public:
    Enemy();
+
 };
 
 #endif // ENEMY_H
