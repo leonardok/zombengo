@@ -14,6 +14,8 @@
 #include "Hero.h"
 #include "Entity.h"
 #include "Enemy.h"
+#include "Wall.h"
+#include "Crate.h"
 
 //bitmap class to load bitmaps for textures
 #include "bitmap.h"
@@ -67,6 +69,8 @@ Characters
 */
 Enemy e;
 Hero *hero;
+Wall *w1;
+Crate *c1;
 
 /**
 Screen dimensions
@@ -219,16 +223,24 @@ void updateCam()
 void initLight() {
     glEnable(GL_LIGHTING );
 	glEnable( GL_LIGHT0 );
+	glEnable( GL_LIGHT1 );
 
 	GLfloat light_ambient[] = {1.0f, 1.0f, 1.0f ,0.5 };
 	GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 0.5 };
 	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 0.5 };
-	GLfloat light_position1[] = {0.0, 0.0, 0.0, 0.5 };
+	GLfloat light_position0[] = {0.0, 0.0, 0.0, 0.5 };
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
-	glLightfv(GL_LIGHT0, GL_POSITION, light_position1);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
+
+	GLfloat light_position1[] = {0.0, 0.0, 0.0, -5.5 };
+
+    glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT1, GL_POSITION, light_position1);
 
 }
 
@@ -261,8 +273,6 @@ void mainInit() {
 
 	initLight();
 
-	enableFog();
-
     // hero
     hero = new Hero();
     hero->setCoordinates(0, 0, 0);
@@ -284,69 +294,6 @@ void initModel() {
 	//modelAL = CModelAl();
 	//modelAL.Init();
 	printf("Models ok. \n \n \n");
-}
-
-/**
-Initialize openal and check for errors
-*/
-void initSound() {
-
-	printf("Initializing OpenAl \n");
-
-	// Init openAL
-	alutInit(0, NULL);
-
-	alGetError(); // clear any error messages
-
-    // Generate buffers, or else no sound will happen!
-    alGenBuffers(NUM_BUFFERS, buffer);
-
-    if(alGetError() != AL_NO_ERROR)
-    {
-        printf("- Error creating buffers !!\n");
-        exit(1);
-    }
-    else
-    {
-        printf("init() - No errors yet.\n");
-    }
-
-	alutLoadWAVFile("Footsteps.wav",&format,&data,&size,&freq,false);
-    alBufferData(buffer[0],format,data,size,freq);
-
-	alGetError(); /* clear error */
-    alGenSources(NUM_SOURCES, source);
-
-    if(alGetError() != AL_NO_ERROR)
-    {
-        printf("- Error creating sources !!\n");
-        exit(2);
-    }
-    else
-    {
-        printf("init - no errors after alGenSources\n");
-    }
-
-	listenerPos[0] = posX;
-	listenerPos[1] = posY;
-	listenerPos[2] = posZ;
-
-	source0Pos[0] = posX;
-	source0Pos[1] = posY;
-	source0Pos[2] = posZ;
-
-	alListenerfv(AL_POSITION,listenerPos);
-    alListenerfv(AL_VELOCITY,listenerVel);
-    alListenerfv(AL_ORIENTATION,listenerOri);
-
-	alSourcef(source[0], AL_PITCH, 1.0f);
-    alSourcef(source[0], AL_GAIN, 1.0f);
-    alSourcefv(source[0], AL_POSITION, source0Pos);
-    alSourcefv(source[0], AL_VELOCITY, source0Vel);
-    alSourcei(source[0], AL_BUFFER,buffer[0]);
-    alSourcei(source[0], AL_LOOPING, AL_TRUE);
-
-	printf("Sound ok! \n\n");
 }
 
 /**
@@ -418,8 +365,21 @@ void setTextureToOpengl(void)
                   0, GL_RGBA, GL_UNSIGNED_BYTE, rgba );
 }
 
-void enableFog(void)
+
+
+void renderCrates()
 {
+    c1 = new Crate();
+    c1->model.Load("res/objs/crate/Crate1.obj");
+    c1->setCoordinates(20.0, 0.0, 10.0);
+}
+
+
+void renderWalls()
+{
+    w1 = new Wall();
+    w1->model.Load("res/objs/wall/mauerwerk.obj");
+    w1->setCoordinates(20.0, 0.0, 10.0);
 }
 
 void renderFloor() {
@@ -447,8 +407,33 @@ void renderFloor() {
             glVertex3f(stage.getStagesizeX()-0.5,0.0,stage.getStagesizeY()-0.5);
             glNormal3f(0.0f,1.0f,0.0f);
             glVertex3f(stage.getStagesizeX()-0.5,0.0,-0.5);
-
     glEnd();
+
+    glBegin(GL_QUADS);
+        glNormal3f(0.0f,0.0f,1.0f);
+
+        glVertex3f(-20.0, 0.0, 20.0);
+        glVertex3f(-20.0, 3.0, 20.0);
+        glVertex3f( 20.0, 3.0, 20.0);
+        glVertex3f( 20.0, 0.0, 20.0);
+
+        glVertex3f( 20.0, 0.0,  20.0);
+        glVertex3f( 20.0, 3.0,  20.0);
+        glVertex3f( 20.0, 3.0, -20.0);
+        glVertex3f( 20.0, 0.0, -20.0);
+
+        glVertex3f(-20.0, 0.0, -20.0);
+        glVertex3f(-20.0, 3.0, -20.0);
+        glVertex3f(-20.0, 3.0, 20.0);
+        glVertex3f(-20.0, 0.0, 20.0);
+
+        glNormal3f(0.0,1.0f,1.0);
+        glVertex3f( 20.0, 3.0, -20.0);
+        glVertex3f( 20.0, 0.0, -20.0);
+        glVertex3f(-20.0, 0.0, -20.0);
+        glVertex3f(-20.0, 3.0, -20.0);
+    glEnd();
+
 
 
     /**
@@ -469,6 +454,8 @@ void renderFloor() {
 
 	glDisable(type);
 	glPopMatrix();
+
+    renderWalls();
 }
 
 void renderScene() {
@@ -482,6 +469,9 @@ void renderScene() {
 
     e.Draw();
     hero->Draw();
+
+    //c1->Draw();
+    //w1->Draw();
 
     // sets the bmp file already loaded to the OpenGL parameters
     setTextureToOpengl();
