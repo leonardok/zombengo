@@ -15,13 +15,12 @@
 
  */
 
-#ifdef __APPLE__
-    #include <GLUT/glut.h>
-
-#else ifdef WIN32
-    #include <windows.h>
-    #include <gl/gl.h>
-    #include <gl/glut.h>
+ #ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
+#include <windows.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
 #endif
 
 

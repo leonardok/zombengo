@@ -211,11 +211,7 @@ glmFindMaterial(GLMmodel* model, char* name)
 
     /* XXX doing a linear search on a string key'd list is pretty lame,
     but it works and is fast enough for now. */
-    printf("Nummaterials: %d\n", model->nummaterials);
-
     for (i = 0; i < model->nummaterials; i++) {
-        printf("material: %s == %s\n", model->materials[i].name, name);
-
         if (!strcmp(model->materials[i].name, name))
             goto found;
     }
@@ -320,8 +316,6 @@ glmReadMTL(GLMmodel* model, char* name, mycallback *call)
     GLuint nummaterials, i;
 
     dir = glmDirName(model->pathname);
-    printf("Getting MTL from: %s\n", dir);
-
     filename = (char*)malloc(sizeof(char) * (strlen(dir) + strlen(name) + 1));
     strcpy(filename, dir);
     strcat(filename, name);
@@ -329,9 +323,8 @@ glmReadMTL(GLMmodel* model, char* name, mycallback *call)
 
     file = fopen(filename, "r");
     if (!file) {
-        fprintf(stderr, "glmReadMTL() failed: can't open material file %s\\%s: ",
-             model->pathname, filename);
-        perror("Error");
+        fprintf(stderr, "glmReadMTL() failed: can't open material file \"%s\".\n",
+            filename);
         exit(1);
     }
     free(filename);

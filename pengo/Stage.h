@@ -2,9 +2,13 @@
 #include<vector>
 class Stage
 {
+float stagesizeX, stagesizeY;
 public:
 std::vector<std::vector<Entity> > stage;
-Stage(int tam);
+Stage(float x, float y);
+void setStagesize(float x, float y);
+float getStagesizeX();
+float getStagesizeY();
 /*
 Caso as colisões sejam tradadas pelo Stage
 

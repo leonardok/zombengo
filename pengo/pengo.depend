@@ -336,3 +336,227 @@
 1403906768 source:c:\documents and settings\administrator\desktop\pengo-master\pengo\stage.cpp
 	"Stage.h"
 
+1399349091 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\3dobject.cpp
+	"3DObject.h"
+	<malloc.h>
+
+1399349091 c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\3dobject.h
+	<string.h>
+	"glm.h"
+
+1404087671 c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\glm.h
+	<GLUT/glut.h>
+	<windows.h>
+	<GL/gl.h>
+	<GL/glut.h>
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo_new_code\depend\include\gl\gl.h
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo_new_code\depend\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo_new_code\depend\include\gl\glu.h
+	<GL/gl.h>
+
+1150231562 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\bitmap.c
+	"bitmap.h"
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+
+1032715440 c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\bitmap.h
+	<GL/glut.h>
+	<windows.h>
+	<wingdi.h>
+
+1403908538 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\block.cpp
+	"Entity.h"
+
+1404087300 c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\entity.h
+	"3DObject.h"
+
+1404087300 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\enemy.cpp
+	"Entity.h"
+
+1404087310 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\entity.cpp
+	"Entity.h"
+
+1398812020 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\glm.cpp
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+1399353128 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\glmimg.cpp
+	<string.h>
+	<math.h>
+	"Texture.h"
+	<windows.h>
+	<GL/gl.h>
+	"glm.h"
+
+1398812010 c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\texture.h
+	<windows.h>
+	<windowsx.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/glut.h>
+	<math.h>
+
+1403905173 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\item.cpp
+	"Entity.h"
+
+1404087725 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\main.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<cmath>
+	<iostream>
+	<gl/glut.h>
+	<al/alut.h>
+	"bitmap.h"
+	"Stage.h"
+	"3DObject.h"
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo_new_code\depend\include\al\alut.h
+	<al/alc.h>
+	<al/al.h>
+	<OpenAL/alc.h>
+	<OpenAL/al.h>
+	<AL/al.h>
+	<AL/alc.h>
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo_new_code\depend\include\al\alc.h
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo_new_code\depend\include\al\al.h
+
+1403905173 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\mainchar.cpp
+	"Entity.h"
+
+1404063559 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\stage.cpp
+	"Stage.h"
+
+1404063305 c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\stage.h
+	"Entity.h"
+	<vector>
+
+1398812012 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\texture.cpp
+	"Texture.h"
+
+1150231562 source:c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.c
+	"bitmap.h"
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+
+1032715440 c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.h
+	<GL/glut.h>
+	<windows.h>
+	<wingdi.h>
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\gl\gl.h
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\gl\glu.h
+	<GL/gl.h>
+
+1403908538 source:c:\users\korndorl\projects\faculdade\pengo\pengo\block.cpp
+	"Entity.h"
+
+1404087300 c:\users\korndorl\projects\faculdade\pengo\pengo\entity.h
+	"3DObject.h"
+
+1399349091 c:\users\korndorl\projects\faculdade\pengo\pengo\3dobject.h
+	<string.h>
+	"glm.h"
+
+1404087671 c:\users\korndorl\projects\faculdade\pengo\pengo\glm.h
+	<GLUT/glut.h>
+	<windows.h>
+	<GL/gl.h>
+	<GL/glut.h>
+
+1404087300 source:c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.cpp
+	"Entity.h"
+
+1404087310 source:c:\users\korndorl\projects\faculdade\pengo\pengo\entity.cpp
+	"Entity.h"
+
+1398812020 source:c:\users\korndorl\projects\faculdade\pengo\pengo\glm.cpp
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+1399353128 source:c:\users\korndorl\projects\faculdade\pengo\pengo\glmimg.cpp
+	<string.h>
+	<math.h>
+	"Texture.h"
+	<windows.h>
+	<GL/gl.h>
+	"glm.h"
+
+1398812010 c:\users\korndorl\projects\faculdade\pengo\pengo\texture.h
+	<windows.h>
+	<windowsx.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/glut.h>
+	<math.h>
+
+1403905173 source:c:\users\korndorl\projects\faculdade\pengo\pengo\item.cpp
+	"Entity.h"
+
+1404088565 source:c:\users\korndorl\projects\faculdade\pengo\pengo\main.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<cmath>
+	<iostream>
+	<gl/glut.h>
+	<al/alut.h>
+	"bitmap.h"
+	"Stage.h"
+	"3DObject.h"
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\al\alut.h
+	<al/alc.h>
+	<al/al.h>
+	<OpenAL/alc.h>
+	<OpenAL/al.h>
+	<AL/al.h>
+	<AL/alc.h>
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\al\alc.h
+
+1404086185 c:\users\korndorl\projects\faculdade\pengo\depend\include\al\al.h
+
+1404063305 c:\users\korndorl\projects\faculdade\pengo\pengo\stage.h
+	"Entity.h"
+	<vector>
+
+1403905173 source:c:\users\korndorl\projects\faculdade\pengo\pengo\mainchar.cpp
+	"Entity.h"
+
+1404063559 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
+	"Stage.h"
+
+1398812012 source:c:\users\korndorl\projects\faculdade\pengo\pengo\texture.cpp
+	"Texture.h"
+
+1399349091 source:c:\users\korndorl\projects\faculdade\pengo\pengo\3dobject.cpp
+	"3DObject.h"
+	<malloc.h>
+

@@ -4,10 +4,10 @@
  * Written by Michael Sweet.
  */
 
+#include "bitmap.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include "bitmap.h"
 
 
 #ifdef WIN32

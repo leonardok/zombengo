@@ -1,9 +1,3 @@
-/**
-Implementa a movimentação simples de uma camera em primeira pessoa para um personagem que anda
-sobre um plano.
-*/
-#include <iostream>
-#include "Stage.h"
 #include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,13 +11,15 @@ sobre um plano.
 
 //bitmap class to load bitmaps for textures
 #include "bitmap.h"
-#include "Rock.h"
+#include "Stage.h"
+//handle for the al.obj model
+//#include "ModelAl.h"
+
+//handle generic obj models
+#include "3DObject.h"
 
 #pragma comment(lib, "OpenAL32.lib")
 #pragma comment(lib, "alut.lib")
-
-//#include <mmsystem.h>
-//#pragma comment(lib, "winmm.lib")
 
 #define PI 3.14159265
 
@@ -32,11 +28,18 @@ sobre um plano.
 #define NUM_SOURCES 1
 #define NUM_ENVIRONMENTS 1
 
+#define SMOOTH 0
+#define SMOOTH_MATERIAL 1
+#define SMOOTH_MATERIAL_TEXTURE 2
+
 void mainInit();
 void initSound();
 void initTexture();
+void initModel();
+void initLight();
+void enableFog();
 void createGLUI();
-void renderScene();
+void mainRender();
 void mainCreateMenu();
 void onMouseButton(int button, int state, int x, int y);
 void onMouseMove(int x, int y);
@@ -51,6 +54,7 @@ void setViewport(GLint left, GLint right, GLint bottom, GLint top);
 void updateState();
 void renderFloor();
 void updateCam();
+void setTextureToOpengl();
 
 /**
 Screen dimensions
@@ -85,8 +89,8 @@ float speedX = 0.0f;
 float speedY = 0.0f;
 float speedZ = 0.0f;
 
-float posX = 2.0f;
-float posY = 0.4f;
+float posX = 0.0f;
+float posY = 0.0f;
 float posZ = 2.0f;
 
 /*
@@ -96,7 +100,7 @@ float headPosAux = 0.0f;
 
 float maxSpeed = 0.25f;
 
-float planeSize = 4.0f;
+float planeSize = 8.0f;
 
 // more sound stuff (position, speed and orientation of the listener)
 ALfloat listenerPos[]={0.0,0.0,4.0};
@@ -131,18 +135,31 @@ GLenum      type;            /* Texture type */
 GLuint      texture;         /* Texture object */
 
 
-Rock *rock;
+
+bool crouched = false;
+bool running = false;
+bool jumping = false;
+float jumpSpeed = 0.06;
+float gravity = 0.004;
+float heightLimit = 0.2;
+float posYOffset = 0.2;
+
+float backgrundColor[4] = {0.0f,0.0f,0.0f,1.0f};
+
+C3DObject cObj;
+Stage stage(20, 10);
+//CModelAl modelAL;
 
 void setWindow() {
-	//roty = 0.0f;
-    //rotx = 90.0f;
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(45.0f,(GLfloat)windowWidth/(GLfloat)windowHeight,0.1f, 100.0f);
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	gluLookAt(posX,posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
-		posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
+	gluLookAt(posX,posY + posYOffset + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
+		posX + sin(roty*PI/180),posY + posYOffset + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
 		0.0,1.0,0.0);
 }
 
@@ -150,17 +167,39 @@ void setWindow() {
 Atualiza a posição e orientação da camera
 */
 void updateCam() {
-	gluLookAt(posX,posY + 0.025 * std::abs(sin(headPosAux*PI/180)),posZ,
-		posX + sin(roty*PI/180),posY + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
+
+	gluLookAt(posX,posY + posYOffset + 0.025 * std::abs(sin(headPosAux*PI/180))+0.7,posZ,
+		posX + sin(roty*PI/180),posY + posYOffset + 0.025 * std::abs(sin(headPosAux*PI/180)) + cos(rotx*PI/180),posZ -cos(roty*PI/180),
 		0.0,1.0,0.0);
 
+	// atualiza a posição do listener e da origen do som, são as mesmas da camera, já que os passos vem de onde o personagem está
 	listenerPos[0] = posX;
 	listenerPos[1] = posY;
 	listenerPos[2] = posZ;
-
 	source0Pos[0] = posX;
 	source0Pos[1] = posY;
 	source0Pos[2] = posZ;
+
+    GLfloat light_position1[] = {0.0,2.0,0.0, 0.5 };
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position1);
+
+
+}
+
+void initLight() {
+    glEnable(GL_LIGHTING );
+	glEnable( GL_LIGHT0 );
+
+	GLfloat light_ambient[] = {1.0f, 1.0f, 1.0f ,0.5 };
+	GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 0.5 };
+	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 0.5 };
+	GLfloat light_position1[] = {0.0, 0.0, 0.0, 0.5 };
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position1);
+
 }
 
 void setViewport(GLint left, GLint right, GLint bottom, GLint top) {
@@ -177,45 +216,118 @@ void mainInit() {
 	setWindow();
 	setViewport(0, windowWidth, 0, windowHeight);
 
-	initSound();
+	// habilita remocao de faces ocultas
 
-	initTexture();
+	glFrontFace (GL_CCW);
 
+	glEnable(GL_CULL_FACE);
+
+	// habilita o z-buffer
+	glEnable(GL_DEPTH_TEST);
+
+    initSound();
+
+    initTexture();
+
+	//initModel();
+
+	initLight();
+
+	enableFog();
 
 	printf("w - andar \n");
-	printf("a - esquerda \n");
-	printf("d - direita \n");
+	printf("s - ir pra tras \n");
+	printf("mouse - direcao \n");
+	printf("r - correr \n");
+	printf("c - abaixar \n");
+	printf("espaco - pular \n");
 
 }
 
+void initModel() {
+	printf("Loading models.. \n");
+	cObj.Init();
+	cObj.Load("penguin.obj");
+	//modelAL = CModelAl();
+	//modelAL.Init();
+	printf("Models ok. \n \n \n");
+}
+
 /**
- * Initialize openal and check for errors
- *
- * There is a class named Sounds that should handle sounds.
- */
+Initialize openal and check for errors
+*/
 void initSound() {
 
 	printf("Initializing OpenAl \n");
 
-	// This sould call Sounds::init
+	// Init openAL
+	alutInit(0, NULL);
+
+	alGetError(); // clear any error messages
+
+    // Generate buffers, or else no sound will happen!
+    alGenBuffers(NUM_BUFFERS, buffer);
+
+    if(alGetError() != AL_NO_ERROR)
+    {
+        printf("- Error creating buffers !!\n");
+        exit(1);
+    }
+    else
+    {
+        printf("init() - No errors yet.\n");
+    }
+
+	alutLoadWAVFile("Footsteps.wav",&format,&data,&size,&freq,false);
+    alBufferData(buffer[0],format,data,size,freq);
+
+	alGetError(); /* clear error */
+    alGenSources(NUM_SOURCES, source);
+
+    if(alGetError() != AL_NO_ERROR)
+    {
+        printf("- Error creating sources !!\n");
+        exit(2);
+    }
+    else
+    {
+        printf("init - no errors after alGenSources\n");
+    }
+
+	listenerPos[0] = posX;
+	listenerPos[1] = posY;
+	listenerPos[2] = posZ;
+
+	source0Pos[0] = posX;
+	source0Pos[1] = posY;
+	source0Pos[2] = posZ;
+
+	alListenerfv(AL_POSITION,listenerPos);
+    alListenerfv(AL_VELOCITY,listenerVel);
+    alListenerfv(AL_ORIENTATION,listenerOri);
+
+	alSourcef(source[0], AL_PITCH, 1.0f);
+    alSourcef(source[0], AL_GAIN, 1.0f);
+    alSourcefv(source[0], AL_POSITION, source0Pos);
+    alSourcefv(source[0], AL_VELOCITY, source0Vel);
+    alSourcei(source[0], AL_BUFFER,buffer[0]);
+    alSourcei(source[0], AL_LOOPING, AL_TRUE);
 
 	printf("Sound ok! \n\n");
 }
 
 /**
-Initialize the texture
+Initialize the texture using the library bitmap
 */
 void initTexture(void)
 {
-	printf ("\nLoading texture..\n");
+    printf ("\nLoading texture..\n");
     // Load a texture object (256x256 true color)
-    bits = LoadDIBitmap(".\\res\\snow.bmp", &info);
+    bits = LoadDIBitmap("res/tiledbronze.bmp", &info);
     if (bits == (GLubyte *)0) {
 		printf ("Error loading texture!\n\n");
 		return;
 	}
-
-
     // Figure out the type of texture
     if (info->bmiHeader.biHeight == 1)
       type = GL_TEXTURE_1D;
@@ -225,12 +337,6 @@ void initTexture(void)
     // Create and bind a texture object
     glGenTextures(1, &texture);
 	glBindTexture(type, texture);
-
-    // Set texture parameters
-	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
     // Create an RGBA image
     rgba = (GLubyte *)malloc(info->bmiHeader.biWidth * info->bmiHeader.biHeight * 4);
@@ -244,108 +350,148 @@ void initTexture(void)
             rgbaptr[3] = (ptr[0] + ptr[1] + ptr[2]) / 3;
     }
 
+    /*
+	// Set texture parameters
+	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP);
+
+
     glTexImage2D(type, 0, 4, info->bmiHeader.biWidth, info->bmiHeader.biHeight,
                   0, GL_RGBA, GL_UNSIGNED_BYTE, rgba );
+    */
 
     printf("Textura %d\n", texture);
 	printf("Textures ok.\n\n", texture);
+
 }
 
-
-void renderFloor()
+/**
+Recovers the texture already initialized in initTexture(), setting it to opengl
+*/
+void setTextureToOpengl(void)
 {
-	glColor4f(0.8f,0.8f,0.8f,1.0f);
-	glBegin(GL_LINES);
-	for (int i = 0; i <= 10; i++) {
-		glVertex3f(-planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
-		glVertex3f(planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
-	}
-	for (int i = 0; i <= 10; i++) {
-		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, -planeSize);
-		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, planeSize);
-	}
-	glEnd();
+    // Create and bind a texture object
+    glGenTextures(1, &texture);
+	glBindTexture(type, texture);
 
+	// Set texture parameters
+	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
+    glTexImage2D(type, 0, 4, info->bmiHeader.biWidth, info->bmiHeader.biHeight,
+                  0, GL_RGBA, GL_UNSIGNED_BYTE, rgba );
 }
 
-void renderFloor_old() {
-
-	// i want some nice, smooth, antialiased lines
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_BLEND);
-	glEnable(GL_LINE_SMOOTH);
-	glHint(GL_LINE_SMOOTH_HINT,GL_NICEST);
-
+void enableFog(void)
+{
+}
+Enemy e;
+void renderFloor() {
 	// set things up to render the floor with the texture
-	glShadeModel(GL_FLAT);
-	glEnable (type);
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
-
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor4f(0.4f,0.4f,0.4f,1.0f);
+	glShadeModel(GL_SMOOTH);
+	glEnable(type);
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	glPushMatrix();
 
+    //glTranslatef(-(float)planeSize/2.0f, 0.0f, -(float)planeSize/2.0f);
+
 	float textureScaleX = 10.0;
 	float textureScaleY = 10.0;
+    glColor4f(1.0f,1.0f,1.0f,1.0f);
+    int xQuads = 40;
+    int zQuads = 40;
 
-	glBegin(GL_QUADS);
-		glTexCoord2f(textureScaleX, 0.0f);   // coords for the texture
-		glVertex3f(-planeSize, 0.0f, planeSize);
+    glBegin(GL_QUADS);
+            glNormal3f(0.0f,1.0f,0.0);
+            glVertex3f(-0.5,0.0,-0.5);
+            glNormal3f(0.0f,1.0f,0.0f);
+            glVertex3f(-0.5,0.0,stage.getStagesizeY()-0.5);
+            glNormal3f(0.0,1.0f,0.0);
+            glVertex3f(stage.getStagesizeX()-0.5,0.0,stage.getStagesizeY()-0.5);
+            glNormal3f(0.0f,1.0f,0.0f);
+            glVertex3f(stage.getStagesizeX()-0.5,0.0,-0.5);
 
-		glTexCoord2f(0.0f, 0.0f);  // coords for the texture
-		glVertex3f(planeSize, 0.0f, planeSize);
+    glEnd();
 
-		glTexCoord2f(0.0f, textureScaleY);  // coords for the texture
-		glVertex3f(planeSize, 0.0f, -planeSize);
+  /*  for (int i = 0; i < xQuads; i++) {
+        for (int j = 0; j < zQuads; j++) {
+            glBegin(GL_QUADS);
+                glTexCoord2f(1.0f, 0.0f);   // coords for the texture
+                glNormal3f(0.0f,1.0f,0.0f);
+                glVertex3f(i * (float)planeSize/xQuads, 0.0f, (j+1) * (float)planeSize/zQuads);
 
-		glTexCoord2f(textureScaleX, textureScaleY);  // coords for the texture
-		glVertex3f(-planeSize, 0.0f, -planeSize);
-	glEnd();
+                glTexCoord2f(0.0f, 0.0f);  // coords for the texture
+                glNormal3f(0.0f,1.0f,0.0f);
+                glVertex3f((i+1) * (float)planeSize/xQuads, 0.0f, (j+1) * (float)planeSize/zQuads);
 
+                glTexCoord2f(0.0f, 1.0f);  // coords for the texture
+                glNormal3f(0.0f,1.0f,0.0f);
+                glVertex3f((i+1) * (float)planeSize/xQuads, 0.0f, j * (float)planeSize/zQuads);
+
+                glTexCoord2f(1.0f, 1.0f);  // coords for the texture
+                glNormal3f(0.0f,1.0f,0.0f);
+                glVertex3f(i * (float)planeSize/xQuads, 0.0f, j * (float)planeSize/zQuads);
+
+            glEnd();
+        }
+    }
+*/
 	glDisable(type);
 
-	glColor4f(0.8f,0.8f,0.8f,1.0f);
-	glBegin(GL_LINES);
-	for (int i = 0; i <= 10; i++) {
-		glVertex3f(-planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
-		glVertex3f(planeSize, 0.0f, -planeSize + i*(2*planeSize)/10.0f);
-	}
-	for (int i = 0; i <= 10; i++) {
-		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, -planeSize);
-		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.0f, planeSize);
-	}
-	glEnd();
 
 	glPopMatrix();
 }
 
+void renderScene() {
+	glClearColor(0.8,0.8,0.8,0.8);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // limpar o depth buffer
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	updateCam();
+
+    e.Draw();
+    std::cout<<posX<<" "<<posZ<<std::endl;
+    // sets the bmp file already loaded to the OpenGL parameters
+    setTextureToOpengl();
+
+	renderFloor();
+
+	//modelAL.Translate(0.0f,1.0f,0.0f);
+	//modelAL.Draw();
+}
 
 void updateState() {
 
-	if (leftPressed) {
-		roty -= 4.0f;
-	}
+	if (upPressed || downPressed) {
 
-	if (rightPressed) {
-		roty += 4.0f;
-	}
-
-	if (upPressed) {
-
-		speedX = 0.025 * sin(roty*PI/180);
-		speedZ = -0.025 * cos(roty*PI/180);
+		if (running) {
+			speedX = 0.05 * sin(roty*PI/180) * 2;
+			speedZ = -0.05 * cos(roty*PI/180) * 2;
+		} else {
+			speedX = 0.05 * sin(roty*PI/180);
+			speedZ = -0.05 * cos(roty*PI/180);
+		}
 
 		// efeito de "sobe e desce" ao andar
-		headPosAux += 7.0f;
+		headPosAux += 8.5f;
 		if (headPosAux > 180.0f) {
 			headPosAux = 0.0f;
 		}
 
-		posX += speedX;
-		posZ += speedZ;
+        if (upPressed) {
+            posX += speedX;
+            posZ += speedZ;
+        } else {
+            posX -= speedX;
+            posZ -= speedZ;
+        }
 
 	} else {
 		// parou de andar, para com o efeito de "sobe e desce"
@@ -356,33 +502,35 @@ void updateState() {
 		}
 	}
 
+	posY += speedY;
+	if (posY < heightLimit) {
+		posY = heightLimit;
+		speedY = 0.0f;
+		jumping = false;
+	} else {
+		speedY -= gravity;
+	}
+
+	if (crouched) {
+		posYOffset -= 0.01;
+		if (posYOffset < 0.1) {
+			posYOffset = 0.1;
+		}
+	} else {
+		posYOffset += 0.01;
+		if (posYOffset > 0.2) {
+			posYOffset = 0.2;
+		}
+	}
 
 }
 
 /**
 Render scene
 */
-void renderScene() {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor4f(0.4f,0.4f,0.4f,1.0f);
-
+void mainRender() {
 	updateState();
-
-	/*
-	 * Anything that needs to be rendered have to be inside this
-	 */
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	updateCam();
-	renderFloor();
-	rock->Draw();
-
-	/*
-	 * End Rendering
-	 */
-
-
+	renderScene();
 	glFlush();
 	glutPostRedisplay();
 	Sleep(30);
@@ -423,8 +571,8 @@ Mouse move while button pressed event handler
 */
 void onMouseMove(int x, int y) {
 
-	mouseLastX = x;
-	mouseLastY = y;
+	/*mouseLastX = x;
+	mouseLastY = y;*/
 
 	glutPostRedisplay();
 }
@@ -434,23 +582,40 @@ Mouse move with no button pressed event handler
 */
 void onMousePassiveMove(int x, int y) {
 
+	roty += (x - mouseLastX);
+
+	rotx -= (y - mouseLastY);
+
+	if (rotx < -128.0) {
+		rotx = -128.0;
+	}
+
+	if (rotx > -45.0) {
+		rotx = -45.0;
+	}
 
 	mouseLastX = x;
 	mouseLastY = y;
+
+	//glutPostRedisplay();
 }
 
 /**
 Key press event handler
 */
 void onKeyDown(unsigned char key, int x, int y) {
+	//printf("%d \n", key);
 	switch (key) {
 		case 32: //space
+			if (!spacePressed && !jumping) {
+				jumping = true;
+				speedY = jumpSpeed;
+			}
 			spacePressed = true;
 			break;
 		case 119: //w
 			if (!upPressed) {
 				alSourcePlay(source[0]);
-				//PlaySound((LPCSTR) "..\\..\\Footsteps.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 			}
 			upPressed = true;
 			break;
@@ -462,6 +627,12 @@ void onKeyDown(unsigned char key, int x, int y) {
 			break;
 		case 100: //d
 			rightPressed = true;
+			break;
+		case 99: //c
+			crouched = true;
+			break;
+		case 114: //r
+			running = true;
 			break;
 		default:
 			break;
@@ -481,7 +652,6 @@ void onKeyUp(unsigned char key, int x, int y) {
 		case 119: //w
 			if (upPressed) {
 				alSourceStop(source[0]);
-				//PlaySound(NULL, 0, 0);
 			}
 			upPressed = false;
 			break;
@@ -493,6 +663,12 @@ void onKeyUp(unsigned char key, int x, int y) {
 			break;
 		case 100: //d
 			rightPressed = false;
+			break;
+		case 99: //c
+			crouched = false;
+			break;
+		case 114: //r
+			running = false;
 			break;
 		case 27:
 			exit(0);
@@ -509,6 +685,7 @@ void onWindowReshape(int x, int y) {
 	windowHeight = y;
 	setWindow();
 	setViewport(0, windowWidth, 0, windowHeight);
+
 }
 
 /**
@@ -519,21 +696,14 @@ void mainIdle() {
 	Set the active window before send an glutPostRedisplay call
 	so it wont be accidently sent to the glui window
 	*/
+
 	glutSetWindow(mainWindowId);
 	glutPostRedisplay();
 }
 
 int main(int argc, char **argv) {
-
-Stage s(5);
-MainChar mc;
-mc.setCellX(2);
-s.stage[2][2] = mc;
-std::cout<<s.stage[2][2].getCellX()<<std::endl;
-
-
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(windowWidth,windowHeight);
 	glutInitWindowPosition(windowXPos,windowYPos);
 
@@ -542,7 +712,7 @@ std::cout<<s.stage[2][2].getCellX()<<std::endl;
 	*/
 	mainWindowId = glutCreateWindow("FPS");
 
-	glutDisplayFunc(renderScene);
+	glutDisplayFunc(mainRender);
 
 	glutReshapeFunc(onWindowReshape);
 
@@ -559,18 +729,14 @@ std::cout<<s.stage[2][2].getCellX()<<std::endl;
 	glutKeyboardFunc(onKeyDown);
 	glutKeyboardUpFunc(onKeyUp);
 
-	rock = new Rock();
-	if(rock->LoadObject() == false)
-    {
-        printf("Couldn't load the rock!");
-    }
+   //-------------------------------------
+    //'e' é do tipo Enemy
+    e.model.Load("res/objs/penguin.obj");
+    e.setOrigin(5.0, 5.0);
+    e.rotateRight();
+    //-------------------------------------
 
 	mainInit();
-
-	/**
-	Create GLUT mouse button menus
-	*/
-	//mainCreateMenu();
 
 	glutMainLoop();
 

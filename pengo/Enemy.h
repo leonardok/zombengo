@@ -3,5 +3,5 @@
 class Enemy:Entity
 {
 public:
-    Enemy();
+   Enemy();
 };
