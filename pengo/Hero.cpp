@@ -65,7 +65,7 @@ void Hero::update()
         if(config_debug)
             std::cout << "Hero::update - rotating right - " << this->getRotation() << "\n";
 
-        this->rotate(-5);
+        this->rotate(5);
 
         if(fmod(this->getRotation(), 90) == 0)
         {
@@ -77,7 +77,7 @@ void Hero::update()
         if(config_debug)
             std::cout << "Hero::update - rotating left - " << this->getRotation() << "\n";
 
-        this->rotate(5);
+        this->rotate(-5);
 
         if(fmod(this->getRotation(), 90) == 0)
         {
