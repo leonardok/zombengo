@@ -9,13 +9,13 @@ class Entity
 {
 public:
     Entity();
-
-    int movement();
+    int moving;
+    void movement();
 
     void rotate(int degrees);
-    void rotateLeft();
-    void rotateBack();
-    void rotateRight();
+    void turnLeft();
+    void turnBack();
+    void turnRight();
     float getRotation();
 
     void Draw();
@@ -35,12 +35,12 @@ public:
     float getZ(void);
 
     void setCellX(int x);
-    void setCellY(int Y);
+    void setCellZ(int Y);
     int getCellX(void);
-    int getCellY(void);
+    int getCellZ(void);
 
     float speed;
-    int cellX, cellY;
+    int cellX, cellZ;
     float posX, posY, posZ;
     float rotateangle;
 

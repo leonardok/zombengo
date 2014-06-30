@@ -159,7 +159,7 @@ float posYOffset = 0.2;
 float backgrundColor[4] = {0.0f,0.0f,0.0f,1.0f};
 
 C3DObject cObj;
-Stage stage(20, 10);
+Stage stage(20, 30);
 //CModelAl modelAL;
 
 void setWindow() {
@@ -489,7 +489,7 @@ void renderScene() {
 	glLoadIdentity();
 
 	updateCam();
-
+    e.movement();
     e.Draw();
     hero->Draw();
 
@@ -730,8 +730,10 @@ int main(int argc, char **argv)
    //-------------------------------------
     //'e' é do tipo Enemy
     e.model.Load("res/objs/penguin.obj");
-    e.setCoordinates(5.0, 0.0, 5.0);
-    e.rotateRight();
+    e.moving = true;
+    e.setCoordinates(0.000000000, 0.0, 5.000000000);
+    e.turnRight();
+
     //-------------------------------------
 
 	mainInit();
