@@ -457,14 +457,11 @@ void renderScene() {
 	updateCam();
 
     e.Draw();
-    std::cout<<posX<<" "<<posZ<<std::endl;
+
     // sets the bmp file already loaded to the OpenGL parameters
     setTextureToOpengl();
 
 	renderFloor();
-
-	//modelAL.Translate(0.0f,1.0f,0.0f);
-	//modelAL.Draw();
 }
 
 void updateState() {
@@ -627,6 +624,7 @@ void onKeyDown(unsigned char key, int x, int y) {
 			break;
 		case 100: //d
 			rightPressed = true;
+			rotateRight = true;
 			break;
 		case 99: //c
 			crouched = true;
@@ -721,7 +719,7 @@ int main(int argc, char **argv) {
 	*/
 	glutMouseFunc(onMouseButton);
 	glutMotionFunc(onMouseMove);
-	glutPassiveMotionFunc(onMousePassiveMove);
+	//glutPassiveMotionFunc(onMousePassiveMove);
 
 	/**
 	Register keyboard events handlers
