@@ -448,13 +448,13 @@
 1398812012 source:c:\users\korndorl\projects\faculdade\pengo_new_code\pengo\texture.cpp
 	"Texture.h"
 
-1404155212 source:c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.c
+1404157176 source:c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.c
 	"bitmap.h"
 	<stdio.h>
 	<stdlib.h>
 	<errno.h>
 
-1404142676 c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.h
+1404157176 c:\users\korndorl\projects\faculdade\pengo\pengo\bitmap.h
 	<GL/glut.h>
 	<windows.h>
 	<wingdi.h>
@@ -557,7 +557,7 @@
 1403905173 source:c:\users\korndorl\projects\faculdade\pengo\pengo\mainchar.cpp
 	"Entity.h"
 
-1404154835 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
+1404158043 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
 	"Stage.h"
 
 1398812012 source:c:\users\korndorl\projects\faculdade\pengo\pengo\texture.cpp
@@ -604,4 +604,16 @@
 
 1404152484 source:c:\users\korndorl\projects\faculdade\pengo\pengo\config.cpp
 	"config.h"
+
+1404157727 source:c:\users\korndorl\projects\faculdade\pengo\pengo\wall.cpp
+	"Wall.h"
+
+1404157727 c:\users\korndorl\projects\faculdade\pengo\pengo\wall.h
+	"Entity.h"
+
+1404158693 source:c:\users\korndorl\projects\faculdade\pengo\pengo\crate.cpp
+	"Crate.h"
+
+1404158693 c:\users\korndorl\projects\faculdade\pengo\pengo\crate.h
+	"Entity.h"
 

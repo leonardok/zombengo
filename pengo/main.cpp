@@ -116,7 +116,7 @@ float headPosAux = 0.0f;
 
 float maxSpeed = 0.25f;
 
-float planeSize = 8.0f;
+float planeSize = 20.0f;
 
 // more sound stuff (position, speed and orientation of the listener)
 ALfloat listenerPos[]={0.0,0.0,4.0};
@@ -303,7 +303,7 @@ void initTexture(void)
 {
     printf ("\nLoading texture..\n");
     // Load a texture object (256x256 true color)
-    bits = LoadDIBitmap("res/tiledbronze.bmp", &info);
+    bits = LoadDIBitmap(".\\res\\tiledbronze.bmp", &info);
     if (bits == (GLubyte *)0) {
 		printf ("Error loading texture!\n\n");
 		return;
@@ -330,14 +330,6 @@ void initTexture(void)
             rgbaptr[3] = (ptr[0] + ptr[1] + ptr[2]) / 3;
     }
 
-
-	// Set texture parameters
-	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
-
     glTexImage2D(type, 0, 4, info->bmiHeader.biWidth, info->bmiHeader.biHeight,
                   0, GL_RGBA, GL_UNSIGNED_BYTE, rgba );
 
@@ -346,31 +338,12 @@ void initTexture(void)
 	printf("Textures ok.\n\n", texture);
 }
 
-/**
-Recovers the texture already initialized in initTexture(), setting it to opengl
-*/
-void setTextureToOpengl(void)
-{
-    // Create and bind a texture object
-    glGenTextures(1, &texture);
-	glBindTexture(type, texture);
-
-	// Set texture parameters
-	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
-    glTexImage2D(type, 0, 4, info->bmiHeader.biWidth, info->bmiHeader.biHeight,
-                  0, GL_RGBA, GL_UNSIGNED_BYTE, rgba );
-}
-
 
 
 void renderCrates()
 {
     c1 = new Crate();
-    c1->model.Load("res/objs/crate/Crate1.obj");
+    //c1->model.Load("res/objs/crate/Crate1.obj");
     c1->setCoordinates(20.0, 0.0, 10.0);
 }
 
@@ -378,64 +351,10 @@ void renderCrates()
 void renderWalls()
 {
     w1 = new Wall();
-    w1->model.Load("res/objs/wall/mauerwerk.obj");
+    //w1->model.Load("res/objs/wall/mauerwerk.obj");
     w1->setCoordinates(20.0, 0.0, 10.0);
-}
-
-void renderFloor() {
-	// set things up to render the floor with the texture
-	glShadeModel(GL_SMOOTH);
-	glEnable(type);
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
-	glPushMatrix();
-
-    //glTranslatef(-(float)planeSize/2.0f, 0.0f, -(float)planeSize/2.0f);
-
-	float textureScaleX = 10.0;
-	float textureScaleY = 10.0;
-    glColor4f(1.0f,1.0f,1.0f,1.0f);
-    int xQuads = 40;
-    int zQuads = 40;
 
     glBegin(GL_QUADS);
-            glNormal3f(0.0f,1.0f,0.0);
-            glVertex3f(-0.5,0.0,-0.5);
-            glNormal3f(0.0f,1.0f,0.0f);
-            glVertex3f(-0.5,0.0,stage.getStagesizeY()-0.5);
-            glNormal3f(0.0,1.0f,0.0);
-            glVertex3f(stage.getStagesizeX()-0.5,0.0,stage.getStagesizeY()-0.5);
-            glNormal3f(0.0f,1.0f,0.0f);
-            glVertex3f(stage.getStagesizeX()-0.5,0.0,-0.5);
-    glEnd();
-
-    // Create and bind a texture object
-    glGenTextures(1, &texture);
-	glBindTexture(type, texture);
-
-    // Set texture parameters
-	glTexParameteri(type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_CLAMP);
-
-        // Create an RGBA image
-    rgba = (GLubyte *)malloc(info->bmiHeader.biWidth * info->bmiHeader.biHeight * 4);
-
-    i = info->bmiHeader.biWidth * info->bmiHeader.biHeight;
-    for( rgbaptr = rgba, ptr = bits;  i > 0; i--, rgbaptr += 4, ptr += 3)
-    {
-            rgbaptr[0] = ptr[2];     // windows BMP = BGR
-            rgbaptr[1] = ptr[1];
-            rgbaptr[2] = ptr[0];
-            rgbaptr[3] = (ptr[0] + ptr[1] + ptr[2]) / 3;
-    }
-
-    glTexImage2D(type, 0, 4, info->bmiHeader.biWidth, info->bmiHeader.biHeight,
-              0, GL_RGBA, GL_UNSIGNED_BYTE, rgba );
-
-    glBegin(GL_QUADS);
-        glNormal3f(0.0f,0.0f,1.0f);
         glVertex3f(-20.0, 0.0, 20.0);
         glVertex3f(-20.0, 3.0, 20.0);
         glVertex3f( 20.0, 3.0, 20.0);
@@ -451,35 +370,71 @@ void renderFloor() {
         glVertex3f(-20.0, 3.0, 20.0);
         glVertex3f(-20.0, 0.0, 20.0);
 
-        glNormal3f(0.0,1.0f,1.0);
         glVertex3f( 20.0, 3.0, -20.0);
         glVertex3f( 20.0, 0.0, -20.0);
         glVertex3f(-20.0, 0.0, -20.0);
         glVertex3f(-20.0, 3.0, -20.0);
     glEnd();
+}
+
+void renderFloor() {
+	// i want some nice, smooth, antialiased lines
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	glEnable(GL_LINE_SMOOTH);
+	glHint(GL_LINE_SMOOTH_HINT,GL_NICEST);
+
+	// set things up to render the floor with the texture
+	glShadeModel(GL_FLAT);
+	glEnable (type);
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor4f(0.4f,0.4f,0.4f,1.0f);
+
+	glPushMatrix();
+
+	float textureScaleX = 10.0;
+	float textureScaleY = 10.0;
+
+	glBegin(GL_QUADS);
+		glTexCoord2f(textureScaleX, 0.0f);   // coords for the texture
+		glVertex3f(-planeSize, 0.0f, planeSize);
+
+		glTexCoord2f(0.0f, 0.0f);  // coords for the texture
+		glVertex3f(planeSize, 0.0f, planeSize);
+
+		glTexCoord2f(0.0f, textureScaleY);  // coords for the texture
+		glVertex3f(planeSize, 0.0f, -planeSize);
+
+		glTexCoord2f(textureScaleX, textureScaleY);  // coords for the texture
+		glVertex3f(-planeSize, 0.0f, -planeSize);
+	glEnd();
+
+    renderWalls();
 
 
+    glDisable(type);
 
     /**
      * Draw lines on the floor
      * They have an y offset to avoid z-fighting
      */
-    glColor4f(0.8f,0.8f,0.8f,1.0f);
+    glColor4f(0.0f,0.0f,0.0f,1.0f);
 	glBegin(GL_LINES);
-	for (int i = 0; i <= 10; i++) {
-		glVertex3f(-planeSize, 0.001f, -planeSize + i*(2*planeSize)/10.0f);
-		glVertex3f(planeSize, 0.001f, -planeSize + i*(2*planeSize)/10.0f);
+	for (int i = 0; i <= 40; i++) {
+		glVertex3f(-planeSize, 0.001f, -planeSize + i*(2*planeSize)/20.0f);
+		glVertex3f(planeSize, 0.001f, -planeSize + i*(2*planeSize)/20.0f);
 	}
-	for (int i = 0; i <= 10; i++) {
-		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.001f, -planeSize);
-		glVertex3f(-planeSize + i*(2*planeSize)/10.0f, 0.001f, planeSize);
+	for (int i = 0; i <= 40; i++) {
+		glVertex3f(-planeSize + i*(2*planeSize)/20.0f, 0.001f, -planeSize);
+		glVertex3f(-planeSize + i*(2*planeSize)/20.0f, 0.001f, planeSize);
 	}
 	glEnd();
 
-	glDisable(type);
 	glPopMatrix();
 
-    renderWalls();
 }
 
 void renderScene() {
@@ -491,16 +446,13 @@ void renderScene() {
 
 	updateCam();
 
+	renderFloor();
+
     e.Draw();
     hero->Draw();
 
     //c1->Draw();
     //w1->Draw();
-
-    // sets the bmp file already loaded to the OpenGL parameters
-    setTextureToOpengl();
-
-	renderFloor();
 }
 
 void updateState() {
@@ -536,6 +488,7 @@ void mainRender() {
 	hero->update();
 
 	renderScene();
+
 	glFlush();
 	glutPostRedisplay();
 	Sleep(30);

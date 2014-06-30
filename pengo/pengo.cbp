@@ -53,6 +53,8 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Block.h" />
+		<Unit filename="Crate.cpp" />
+		<Unit filename="Crate.h" />
 		<Unit filename="EmptyCell.cpp" />
 		<Unit filename="EmptyCell.h" />
 		<Unit filename="Enemy.cpp" />
