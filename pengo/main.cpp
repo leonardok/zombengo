@@ -120,7 +120,7 @@ float headPosAux = 0.0f;
 
 float maxSpeed = 0.25f;
 
-float planeSize = 20.0f;
+float planeSize = 32.0f;
 
 // more sound stuff (position, speed and orientation of the listener)
 ALfloat listenerPos[]={0.0,0.0,4.0};
@@ -410,16 +410,16 @@ void renderFloor() {
 
 	glBegin(GL_QUADS);
 		glTexCoord2f(textureScaleX, 0.0f);   // coords for the texture
-		glVertex3f(-planeSize, 0.0f, planeSize);
+		glVertex3f(0.0f, 0.0f, planeSize);
 
 		glTexCoord2f(0.0f, 0.0f);  // coords for the texture
 		glVertex3f(planeSize, 0.0f, planeSize);
 
 		glTexCoord2f(0.0f, textureScaleY);  // coords for the texture
-		glVertex3f(planeSize, 0.0f, -planeSize);
+		glVertex3f(planeSize, 0.0f, 0.0f);
 
 		glTexCoord2f(textureScaleX, textureScaleY);  // coords for the texture
-		glVertex3f(-planeSize, 0.0f, -planeSize);
+		glVertex3f(0.0f, 0.0f, 0.0f);
 	glEnd();
 
     //renderWalls();
@@ -433,13 +433,13 @@ void renderFloor() {
      */
     glColor4f(0.0f,0.0f,0.0f,1.0f);
 	glBegin(GL_LINES);
-	for (int i = 0; i <= 40; i++) {
-		glVertex3f(-planeSize, 0.001f, -planeSize + i*(2*planeSize)/20.0f);
-		glVertex3f(planeSize, 0.001f, -planeSize + i*(2*planeSize)/20.0f);
+	for (int i = 0; i <= planeSize; i++) {
+		glVertex3f(0.0f, 0.001f, i);
+		glVertex3f(planeSize, 0.001f, i);
 	}
-	for (int i = 0; i <= 40; i++) {
-		glVertex3f(-planeSize + i*(2*planeSize)/20.0f, 0.001f, -planeSize);
-		glVertex3f(-planeSize + i*(2*planeSize)/20.0f, 0.001f, planeSize);
+	for (int i = 0; i <= planeSize; i++) {
+		glVertex3f(i, 0.001f, 0);
+		glVertex3f(i, 0.001f, planeSize);
 	}
 	glEnd();
 
@@ -457,10 +457,9 @@ void renderScene() {
 	updateCam();
 
 	renderFloor();
-
 	renderCrates();
 
-    e.movement();
+
     e.Draw();
     hero->Draw();
 
@@ -498,6 +497,7 @@ void mainRender() {
 	updateState();
 
     // update hero position (rotation...)
+    e.update();
 	hero->update();
 
 	renderScene();
@@ -712,7 +712,7 @@ int main(int argc, char **argv)
 
                 Crate *c = new Crate();
                 c->model.Load("res/objs/ice/Killer_Frost_Ice_Block.obj");
-                c->setCoordinates(mapx - 16, 1, mapz - 16);
+                c->setCoordinates(mapx, 1, mapz);
                 c->setScale(0.6, 0.8, 0.6);
 
                 crates.push_back(c);
@@ -725,7 +725,7 @@ int main(int argc, char **argv)
     //'e' é do tipo Enemy
     e.model.Load("res/objs/penguin.obj");
     e.moving = true;
-    e.setCoordinates(0.000000000, 0.4, 0.000000000);
+    e.setCoordinates(16.0, 0.4, 16.0);
     e.setCellX((int)(posX));
     e.setCellZ((int)(posZ));
     e.setScale(0.6, 0.4, 0.6);

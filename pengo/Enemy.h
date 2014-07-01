@@ -6,12 +6,27 @@
 class Enemy: public Entity
 {
 public:
-   Enemy();
-   void movement();
-   bool centerblock();
-   bool collision();
-   void mov();
-   int state; //1 - checking 2 - moving 3 - turning
+    Enemy();
+    //void movement();
+    //bool centerblock();
+    //bool collision();
+    //void mov();
+
+    void checkForCollisions();
+    void walk();
+    void turn();
+    void update();
+
+    /**
+     * State description
+     * 0 - checking for collisions
+     * 2 - walking
+     * 3 - turning
+     */
+    int state;
+
+    // Track old position. We empty it when stop walking
+    int oldX, oldZ;
 };
 
 #endif // ENEMY_H

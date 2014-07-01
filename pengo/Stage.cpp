@@ -79,6 +79,7 @@ int ** Stage::readImageMap(char *image_path)
         }
     }
 
+    this->printStageIntMap(st);
     this->stage_int_map = st;
     return st;
 }

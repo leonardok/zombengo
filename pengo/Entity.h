@@ -5,6 +5,13 @@
 
 #include "3DObject.h"
 
+enum entity_codes
+{
+    WALL = 0,
+    ENEMY = 3,
+    EMPTY = 4,
+};
+
 class Entity
 {
 public:
