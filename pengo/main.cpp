@@ -725,9 +725,11 @@ int main(int argc, char **argv)
     //'e' é do tipo Enemy
     e.model.Load("res/objs/penguin.obj");
     e.moving = true;
-    e.setCoordinates(0.000000000, 0.4, 5.000000000);
+    e.setCoordinates(0.000000000, 0.4, 0.000000000);
+    e.setCellX((int)(posX));
+    e.setCellZ((int)(posZ));
     e.setScale(0.6, 0.4, 0.6);
-    e.turnRight();
+    //e.turnRight();
 
     //-------------------------------------
 

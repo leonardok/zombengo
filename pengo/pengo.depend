@@ -762,3 +762,161 @@
 1404149601 source:c:\documents and settings\paulo\desktop\pengo\pengo\texture.cpp
 	"Texture.h"
 
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\3dobject.cpp
+	"3DObject.h"
+	<malloc.h>
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\3dobject.h
+	<string.h>
+	"glm.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\glm.h
+	<GLUT/glut.h>
+	<windows.h>
+	<GL/gl.h>
+	<GL/glut.h>
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\depend\include\gl\gl.h
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\depend\include\gl\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\depend\include\gl\glu.h
+	<GL/gl.h>
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\bitmap.c
+	"bitmap.h"
+	<stdio.h>
+	<stdlib.h>
+	<errno.h>
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\bitmap.h
+	<GL/glut.h>
+	<windows.h>
+	<wingdi.h>
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\block.cpp
+	"Block.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\block.h
+	"Entity.h"
+
+1404234963 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\entity.h
+	<math.h>
+	"3DObject.h"
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\crate.cpp
+	"Crate.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\crate.h
+	"Entity.h"
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\emptycell.cpp
+	"EmptyCell.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\emptycell.h
+	"Entity.h"
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\glm.cpp
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"glm.h"
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\glmimg.cpp
+	<string.h>
+	<math.h>
+	"Texture.h"
+	<windows.h>
+	<GL/gl.h>
+	"glm.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\texture.h
+	<windows.h>
+	<windowsx.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/glut.h>
+	<math.h>
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\hero.cpp
+	"Hero.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\hero.h
+	<iostream>
+	<math.h>
+	"Entity.h"
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\item.cpp
+	"Item.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\item.h
+	"Entity.h"
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\texture.cpp
+	"Texture.h"
+
+1404165693 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\wall.cpp
+	"Wall.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\wall.h
+	"Entity.h"
+
+1404248148 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\enemy.cpp
+	"Enemy.h"
+	<iostream>
+
+1404247124 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\enemy.h
+	"Entity.h"
+
+1404234963 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\entity.cpp
+	"Entity.h"
+	<iostream>
+
+1404248566 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\main.cpp
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<cmath>
+	<iostream>
+	<gl/glut.h>
+	<al/alut.h>
+	"config.h"
+	"Hero.h"
+	"Entity.h"
+	"Enemy.h"
+	"Wall.h"
+	"Crate.h"
+	"bitmap.h"
+	"Stage.h"
+	"3DObject.h"
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\depend\include\al\alut.h
+	<al/alc.h>
+	<al/al.h>
+	<OpenAL/alc.h>
+	<OpenAL/al.h>
+	<AL/al.h>
+	<AL/alc.h>
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\depend\include\al\alc.h
+
+1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\depend\include\al\al.h
+
+1404179450 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\config.h
+
+1404234963 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\stage.h
+	<vector>
+	<iostream>
+	"bitmap.h"
+	"Entity.h"
+	"EmptyCell.h"
+
+1404234963 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\stage.cpp
+	"Stage.h"
+
