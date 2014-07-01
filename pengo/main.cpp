@@ -149,7 +149,57 @@ GLubyte	    *rgbaptr;        /* Pointer into RGBA buffer */
 GLubyte     temp;            /* Swapping variable */
 GLenum      type;            /* Texture type */
 GLuint      texture;         /* Texture object */
+GLubyte    *mapa;
 
+
+
+void readIMG(void)
+{
+int st[32][32];
+int aux[32*32];
+ mapa = LoadDIBitmap("res/mapa.bmp", &info);
+
+for (i = 0; i<3*32*32 ;i+=3)
+    {
+
+    if((int)mapa[i] == 0&&(int)mapa[i+1] == 0&& (int)mapa[i+2] == 0)
+    {
+        aux[i/3] = 0;
+    }
+    if((int)mapa[i] == 0&&(int)mapa[i+1] == 0&& (int)mapa[i+2] != 0)
+    {
+        aux[i/3] = 1;
+    }
+    if((int)mapa[i] == 0&&(int)mapa[i+1] != 0&& (int)mapa[i+2] == 0)
+    {
+        aux[i/3] = 2;
+    }
+    if((int)mapa[i] != 0&&(int)mapa[i+1] == 0&& (int)mapa[i+2] == 0)
+    {
+        aux[i/3] = 3;
+    }
+    if((int)mapa[i] == 255&&(int)mapa[i+1] == 255&& (int)mapa[i+2] == 255)
+    {
+        aux[i/3] = 4;
+    }
+}
+    int k = 0 ;
+    for(int i = 31;i>=0;i--)
+    {
+        for(int j = 0;j<32;j++, k++)
+        {
+            st[i][j] = aux[k];
+        }
+    }
+    for(int i = 0;i<32;i++)
+    {
+        for(int j = 0;j<32;j++)
+        {
+            std::cout<<st[i][j]<< " ";
+        }
+        std::cout<<std::endl;
+    }
+}
 
 
 bool crouched = false;
@@ -684,7 +734,7 @@ int main(int argc, char **argv)
 	*/
 	glutKeyboardFunc(onKeyDown);
 	glutKeyboardUpFunc(onKeyUp);
-
+    readIMG();
    //-------------------------------------
     //'e' é do tipo Enemy
     e.model.Load("res/objs/penguin.obj");
