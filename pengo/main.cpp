@@ -71,6 +71,9 @@ Enemy e;
 Hero *hero;
 Wall *w1;
 Crate *c1;
+std::vector<Crate *> crates;
+
+Stage *stage;
 
 /**
 Screen dimensions
@@ -153,53 +156,7 @@ GLubyte    *mapa;
 
 
 
-void readIMG(void)
-{
-int st[32][32];
-int aux[32*32];
- mapa = LoadDIBitmap("res/mapa.bmp", &info);
 
-for (i = 0; i<3*32*32 ;i+=3)
-    {
-
-    if((int)mapa[i] == 0&&(int)mapa[i+1] == 0&& (int)mapa[i+2] == 0)
-    {
-        aux[i/3] = 0;
-    }
-    if((int)mapa[i] == 0&&(int)mapa[i+1] == 0&& (int)mapa[i+2] != 0)
-    {
-        aux[i/3] = 1;
-    }
-    if((int)mapa[i] == 0&&(int)mapa[i+1] != 0&& (int)mapa[i+2] == 0)
-    {
-        aux[i/3] = 2;
-    }
-    if((int)mapa[i] != 0&&(int)mapa[i+1] == 0&& (int)mapa[i+2] == 0)
-    {
-        aux[i/3] = 3;
-    }
-    if((int)mapa[i] == 255&&(int)mapa[i+1] == 255&& (int)mapa[i+2] == 255)
-    {
-        aux[i/3] = 4;
-    }
-}
-    int k = 0 ;
-    for(int i = 31;i>=0;i--)
-    {
-        for(int j = 0;j<32;j++, k++)
-        {
-            st[i][j] = aux[k];
-        }
-    }
-    for(int i = 0;i<32;i++)
-    {
-        for(int j = 0;j<32;j++)
-        {
-            std::cout<<st[i][j]<< " ";
-        }
-        std::cout<<std::endl;
-    }
-}
 
 
 bool crouched = false;
@@ -213,7 +170,6 @@ float posYOffset = 0.2;
 float backgrundColor[4] = {0.0f,0.0f,0.0f,1.0f};
 
 C3DObject cObj;
-Stage stage(40, 40);
 
 
 void setWindow() {
@@ -325,7 +281,8 @@ void mainInit() {
 
     // hero
     hero = new Hero();
-    hero->setCoordinates(0, 0, 0);
+    hero->setCoordinates(0, 1, 0);
+    hero->setScale(0.6, 0.6, 0.6);
     hero->setModelPath(hero_model);
 
 	printf("w - andar \n");
@@ -392,9 +349,11 @@ void initTexture(void)
 
 void renderCrates()
 {
-    c1 = new Crate();
-    //c1->model.Load("res/objs/crate/Crate1.obj");
-    c1->setCoordinates(20.0, 0.0, 10.0);
+    int i;
+    for(i = 0; i < crates.size(); i++)
+    {
+        crates[i]->Draw();
+    }
 }
 
 
@@ -462,7 +421,7 @@ void renderFloor() {
 		glVertex3f(-planeSize, 0.0f, -planeSize);
 	glEnd();
 
-    renderWalls();
+    //renderWalls();
 
 
     glDisable(type);
@@ -497,6 +456,8 @@ void renderScene() {
 	updateCam();
 
 	renderFloor();
+
+	renderCrates();
 
     e.movement();
     e.Draw();
@@ -734,12 +695,37 @@ int main(int argc, char **argv)
 	*/
 	glutKeyboardFunc(onKeyDown);
 	glutKeyboardUpFunc(onKeyUp);
-    readIMG();
+
+
+    stage = new Stage(32, 32);
+    int ** map_matrix = stage->readImageMap("res/mapa.bmp");
+
+    int mapx, mapz;
+    for(mapx = 0; mapx < 32; mapx++)
+    {
+        for(mapz = 0; mapz < 32; mapz++)
+        {
+            if(map_matrix[mapx][mapz] == 0)
+            {
+                std::cout << "Found a rock!\n";
+
+                Crate *c = new Crate();
+                c->model.Load("res/objs/ice/Killer_Frost_Ice_Block.obj");
+                c->setCoordinates(mapx - 16, 1, mapz - 16);
+                c->setScale(0.6, 0.8, 0.6);
+
+                crates.push_back(c);
+            }
+        }
+    }
+
+
    //-------------------------------------
     //'e' é do tipo Enemy
     e.model.Load("res/objs/penguin.obj");
     e.moving = true;
-    e.setCoordinates(0.000000000, 0.0, 5.000000000);
+    e.setCoordinates(0.000000000, 0.4, 5.000000000);
+    e.setScale(0.6, 0.4, 0.6);
     e.turnRight();
 
     //-------------------------------------

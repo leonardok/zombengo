@@ -25,7 +25,7 @@ public:
     float getSpeed(void);
     void setSpeed(float speed);
 
-
+    void setScale(float, float, float);
     void setCoordinates(float, float, float);
     void setX(float);
     void setY(float);
@@ -42,6 +42,7 @@ public:
     float speed;
     int cellX, cellZ;
     float posX, posY, posZ;
+    float scaleX, scaleY, scaleZ;
     float rotateangle;
 
     C3DObject model;

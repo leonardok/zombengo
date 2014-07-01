@@ -3,7 +3,8 @@
 Entity::Entity()
 {
     rotateangle = 00.0;
-    posY = 2.0;
+    posY = 1.0;
+    scaleX = scaleY = scaleZ = 1.0f;
 }
 
 float Entity::getSpeed(void)
@@ -14,6 +15,13 @@ float Entity::getSpeed(void)
 void Entity::setSpeed(float s)
 {
     speed = s;
+}
+
+void Entity::setScale(float x, float y, float z)
+{
+    this->scaleX = x;
+    this->scaleY = y;
+    this->scaleZ = z;
 }
 
 void Entity::setCoordinates(float x, float y, float z)
@@ -105,8 +113,10 @@ void Entity::Draw()
 {
     glPushMatrix();
 
-    glTranslatef(posX, 1, posZ);
+
+    glTranslatef(posX, posY, posZ);
     glRotatef(getRotation() - 90, 0,-1,0);
+    glScalef(scaleX, scaleY, scaleZ);
 
     model.Draw(2);
     glPopMatrix();

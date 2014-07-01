@@ -1,8 +1,10 @@
 #ifndef STAGE_H
 #define STAGE_H
 
-#include<vector>
+#include <vector>
+#include <iostream>
 
+#include "bitmap.h"
 #include "Entity.h"
 #include "EmptyCell.h"
 
@@ -12,11 +14,20 @@ class Stage
     float stagesizeX, stagesizeY;
 
 public:
-    std::vector<std::vector<Entity> > stage;
     Stage(float x, float y);
     void setStagesize(float x, float y);
     float getStagesizeX();
     float getStagesizeY();
+
+    int ** readImageMap(char *image_path);
+    void printStageIntMap(int ** stage_map);
+
+    BITMAPINFO	*info;           /* Bitmap information */
+    GLubyte     *mapa;
+
+    int **stage_int_map;
+
+    std::vector<std::vector<Entity> > stage;
 
 /*
 Caso as colisões sejam tradadas pelo Stage
