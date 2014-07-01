@@ -110,7 +110,10 @@ float Entity::getRotation()
 {
     return rotateangle;
 }
-
+void Entity::setRotation(float r)
+{
+    rotateangle = r;
+}
 
 void Entity::Draw()
 {

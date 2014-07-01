@@ -74,6 +74,7 @@ Crate *c1;
 std::vector<Crate *> crates;
 
 Stage *stage;
+std::vector<Enemy *> enemies;
 int ** map_matrix;
 
 /**
@@ -460,8 +461,12 @@ void renderScene() {
 
 	renderCrates();
 
-    e.movement();
-    e.Draw();
+    for(int i = 0 ;i < enemies.size();i++)
+    {
+        enemies[i]->movement();
+        enemies[i]->Draw();
+    }
+
     hero->Draw();
 
     //c1->Draw();
@@ -708,14 +713,50 @@ int main(int argc, char **argv)
         {
             if(map_matrix[mapx][mapz] == 0)
             {
-                std::cout << "Found a rock!\n";
+                //std::cout << "Found a rock!\n";
 
                 Crate *c = new Crate();
+
                 c->model.Load("res/objs/ice/Killer_Frost_Ice_Block.obj");
                 c->setCoordinates(mapx - 16, 1, mapz - 16);
                 c->setScale(0.6, 0.8, 0.6);
-
                 crates.push_back(c);
+            }
+            if(map_matrix[mapx][mapz] == 1 && mapz%2 == 1 && mapx%2 == 1)
+            {
+                Enemy* e = new Enemy();
+                e->model.Load("res/objs/zombie/Lambent_Female.obj");
+                e->setCoordinates(mapx - 16, 1, mapz - 16);
+                e->setScale(0.6, 0.8, 0.6);
+                e->setRotation(90.0);
+                enemies.push_back(e);
+            }
+            if(map_matrix[mapx][mapz] == 1 && mapz%2 == 1 && mapx%2 == 0)
+            {
+                Enemy* e = new Enemy();
+                e->model.Load("res/objs/zombie/Lambent_Female.obj");
+                e->setCoordinates(mapx - 16, 1, mapz - 16);
+                e->setScale(0.6, 0.8, 0.6);
+                enemies.push_back(e);
+            }
+
+            if(map_matrix[mapx][mapz] == 1 && mapz%2 == 0 && mapx%2 == 0)
+            {
+                Enemy* e = new Enemy();
+                e->model.Load("res/objs/zombie2/Lambent_Male.obj");
+                e->setCoordinates(mapx - 16, 1, mapz - 16);
+                e->setScale(0.6, 0.8, 0.6);
+                e->setRotation(180.0);
+                enemies.push_back(e);
+            }
+            if(map_matrix[mapx][mapz] == 1 && mapz%2 == 0 && mapx%2 == 1)
+            {
+                Enemy* e = new Enemy();
+                e->model.Load("res/objs/zombie2/Lambent_Male.obj");
+                e->setCoordinates(mapx - 16, 1, mapz - 16);
+                e->setScale(0.6, 0.8, 0.6);
+                e->setRotation(270.0);
+                enemies.push_back(e);
             }
         }
     }
