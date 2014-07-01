@@ -1,5 +1,8 @@
 #include "Entity.h"
 #include<iostream>
+
+extern int ** map_matrix;
+
 Entity::Entity()
 {
     rotateangle = 00.0;
@@ -122,13 +125,32 @@ void Entity::Draw()
     glPopMatrix();
 }
 
+/**
+ * The auto movement
+ *
+ * The auto movement should be based on a state machine, that has the
+ * following states:
+ *   - moving forward
+ *   - turning
+ *   - check for collision
+ *   - back to step 1
+ *
+ * This way, as we have a copy of the map matrix, we can check for collisions
+ * before we walk.
+ *
+ * Also, when is going to walk, after checking for possible collisions on the
+ * next tile, if it can walk to the next tile, mark both with this entity code,
+ * so while is transitioning, it wont permit another entities to overlap part
+ * of the model. - I think the sold overlapping problems we might have.
+ */
 void Entity::movement()
 {
-        int rot = getRotation();
+        int rotation = getRotation();
+        int x = this->getX();
+        int z = this->getZ();
         if(moving)
         {
-
-            switch(rot)
+            switch(rotation)
             {
             case 0:
                 posX+= 0.1;

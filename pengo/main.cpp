@@ -74,6 +74,7 @@ Crate *c1;
 std::vector<Crate *> crates;
 
 Stage *stage;
+int ** map_matrix;
 
 /**
 Screen dimensions
@@ -698,7 +699,7 @@ int main(int argc, char **argv)
 
 
     stage = new Stage(32, 32);
-    int ** map_matrix = stage->readImageMap("res/mapa.bmp");
+    map_matrix = stage->readImageMap("res/mapa.bmp");
 
     int mapx, mapz;
     for(mapx = 0; mapx < 32; mapx++)
