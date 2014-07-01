@@ -3,6 +3,6 @@
 
 bool config_debug;
 
-char *hero_model = "res/objs/hero/penguin.obj";
+char *hero_model = "res/objs/hero/obese_male.obj";
 
 #endif // CONFIG_H
