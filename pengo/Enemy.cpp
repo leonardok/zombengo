@@ -1,7 +1,10 @@
-#include "Enemy.h"
 #include<iostream>
 
+#include "Enemy.h"
+#include "Stage.h"
+
 extern int ** map_matrix;
+extern Stage *stage;
 
 enum enemy_state {CHKCOLI, WALKING, TURNING};
 
@@ -68,14 +71,21 @@ void Enemy::walk()
     this->posX += step * round(cos(radians));
     this->posZ += step * round(sin(radians));
 
-    std::cout << "walked to" << this->posX << " " << this->posZ << " and fmod is " << fmod(this->posX, 1.0f) << std::endl;
+    std::cout << "walked to" << this->posX << " " << this->posZ << std::endl;
 
-    if(fmod(this->posX, 1.0f) < 0.001f and fmod(this->posZ, 1.0f) < 0.001f)
+    // We need this because there are some float point imprecision in
+    // the 0.00001 order
+    int rounded_posX = this->posX * 10;
+    int rounded_posZ = this->posZ * 10;
+
+    if(rounded_posX % 10 == 0 and rounded_posZ % 10 == 0)
     {
         std::cout << "Stopped walking" << std::endl;
         map_matrix[this->oldX][this->oldZ] = EMPTY;
         this->state = CHKCOLI;
     }
+
+    //stage->printStageIntMap(stage->stage_int_map);
 }
 
 void Enemy::turn()
