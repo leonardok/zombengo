@@ -472,7 +472,7 @@
 1404104146 source:c:\users\korndorl\projects\faculdade\pengo\pengo\block.cpp
 	"Block.h"
 
-1404253309 c:\users\korndorl\projects\faculdade\pengo\pengo\entity.h
+1404261877 c:\users\korndorl\projects\faculdade\pengo\pengo\entity.h
 	<math.h>
 	"3DObject.h"
 
@@ -486,11 +486,12 @@
 	<GL/gl.h>
 	<GL/glut.h>
 
-1404255871 source:c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.cpp
-	"Enemy.h"
+1404262031 source:c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.cpp
 	<iostream>
+	"Enemy.h"
+	"Stage.h"
 
-1404228688 source:c:\users\korndorl\projects\faculdade\pengo\pengo\entity.cpp
+1404260809 source:c:\users\korndorl\projects\faculdade\pengo\pengo\entity.cpp
 	"Entity.h"
 	<iostream>
 
@@ -521,7 +522,7 @@
 1404104146 source:c:\users\korndorl\projects\faculdade\pengo\pengo\item.cpp
 	"Item.h"
 
-1404255698 source:c:\users\korndorl\projects\faculdade\pengo\pengo\main.cpp
+1404261877 source:c:\users\korndorl\projects\faculdade\pengo\pengo\main.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -562,7 +563,7 @@
 1403905173 source:c:\users\korndorl\projects\faculdade\pengo\pengo\mainchar.cpp
 	"Entity.h"
 
-1404254609 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
+1404261877 source:c:\users\korndorl\projects\faculdade\pengo\pengo\stage.cpp
 	"Stage.h"
 
 1398812012 source:c:\users\korndorl\projects\faculdade\pengo\pengo\texture.cpp
@@ -583,7 +584,7 @@
 1404104146 c:\users\korndorl\projects\faculdade\pengo\pengo\block.h
 	"Entity.h"
 
-1404255855 c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.h
+1404261877 c:\users\korndorl\projects\faculdade\pengo\pengo\enemy.h
 	"Entity.h"
 
 1404104146 c:\users\korndorl\projects\faculdade\pengo\pengo\item.h

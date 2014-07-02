@@ -121,7 +121,7 @@ float headPosAux = 0.0f;
 
 float maxSpeed = 0.25f;
 
-float planeSize = 20.0f;
+float planeSize = 32.0f;
 
 // more sound stuff (position, speed and orientation of the listener)
 ALfloat listenerPos[]={0.0,0.0,4.0};
@@ -411,16 +411,16 @@ void renderFloor() {
 
 	glBegin(GL_QUADS);
 		glTexCoord2f(textureScaleX, 0.0f);   // coords for the texture
-		glVertex3f(0.0f, 0.0f, planeSize);
+		glVertex3f(-1.0f, 0.0f, planeSize);
 
 		glTexCoord2f(0.0f, 0.0f);  // coords for the texture
 		glVertex3f(planeSize, 0.0f, planeSize);
 
 		glTexCoord2f(0.0f, textureScaleY);  // coords for the texture
-		glVertex3f(planeSize, 0.0f, 0.0f);
+		glVertex3f(planeSize, 0.0f, -1.0f);
 
 		glTexCoord2f(textureScaleX, textureScaleY);  // coords for the texture
-		glVertex3f(0.0f, 0.0f, 0.0f);
+		glVertex3f(-1.0f, 0.0f, -1.0f);
 	glEnd();
 
     //renderWalls();
@@ -462,7 +462,7 @@ void renderScene() {
 
     for(int i = 0 ;i < enemies.size();i++)
     {
-        enemies[i]->movement();
+        enemies[i]->update();
         enemies[i]->Draw();
     }
 
@@ -714,7 +714,7 @@ int main(int argc, char **argv)
                 Crate *c = new Crate();
 
                 c->model.Load("res/objs/ice/Killer_Frost_Ice_Block.obj");
-                c->setCoordinates(mapx - 16, 1, mapz - 16);
+                c->setCoordinates(mapx, 0.8, mapz);
                 c->setScale(0.6, 0.8, 0.6);
                 crates.push_back(c);
             }
@@ -722,7 +722,7 @@ int main(int argc, char **argv)
             {
                 Enemy* e = new Enemy();
                 e->model.Load("res/objs/zombie/Lambent_Female.obj");
-                e->setCoordinates(mapx - 16, 1, mapz - 16);
+                e->setCoordinates(mapx, 1, mapz);
                 e->setScale(0.6, 0.8, 0.6);
                 e->setRotation(90.0);
                 enemies.push_back(e);
@@ -731,7 +731,7 @@ int main(int argc, char **argv)
             {
                 Enemy* e = new Enemy();
                 e->model.Load("res/objs/zombie/Lambent_Female.obj");
-                e->setCoordinates(mapx - 16, 1, mapz - 16);
+                e->setCoordinates(mapx, 1, mapz);
                 e->setScale(0.6, 0.8, 0.6);
                 enemies.push_back(e);
             }
@@ -740,7 +740,7 @@ int main(int argc, char **argv)
             {
                 Enemy* e = new Enemy();
                 e->model.Load("res/objs/zombie2/Lambent_Male.obj");
-                e->setCoordinates(mapx - 16, 1, mapz - 16);
+                e->setCoordinates(mapx, 1, mapz);
                 e->setScale(0.6, 0.8, 0.6);
                 e->setRotation(180.0);
                 enemies.push_back(e);
@@ -749,24 +749,13 @@ int main(int argc, char **argv)
             {
                 Enemy* e = new Enemy();
                 e->model.Load("res/objs/zombie2/Lambent_Male.obj");
-                e->setCoordinates(mapx - 16, 1, mapz - 16);
+                e->setCoordinates(mapx, 1, mapz);
                 e->setScale(0.6, 0.8, 0.6);
                 e->setRotation(270.0);
                 enemies.push_back(e);
             }
         }
     }
-
-
-   //-------------------------------------
-    //'e' é do tipo Enemy
-    e.model.Load("res/objs/penguin.obj");
-    e.moving = true;
-    e.setCoordinates(16.0, 0.4, 16.0);
-    e.setCellX((int)(posX));
-    e.setCellZ((int)(posZ));
-    e.setScale(0.6, 0.4, 0.6);
-    //e.turnRight();
 
     //-------------------------------------
 
