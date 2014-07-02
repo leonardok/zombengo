@@ -40,6 +40,10 @@
 #define SMOOTH_MATERIAL 1
 #define SMOOTH_MATERIAL_TEXTURE 2
 
+#define CAMERA_3RD_PERSON 0
+#define CAMERA_1ST_PERSON 1
+#define CAMERA_TOP 2
+
 void mainInit();
 void initSound();
 void initTexture();
@@ -72,9 +76,9 @@ Hero *hero;
 Wall *w1;
 Crate *c1;
 std::vector<Crate *> crates;
+std::vector<Enemy *> enemies;
 
 Stage *stage;
-std::vector<Enemy *> enemies;
 int ** map_matrix;
 
 /**
@@ -82,6 +86,12 @@ Screen dimensions
 */
 int windowWidth = 600;
 int windowHeight = 480;
+
+/**
+Camera
+*/
+//int camera = CAMERA_3RD_PERSON;
+int camera = CAMERA_1ST_PERSON;
 
 /**
 Screen position
@@ -192,6 +202,7 @@ Atualiza a posição e orientação da camera
 */
 void updateCam()
 {
+    float posY = 5.0f;
     float posX = hero->getX();
     float posZ = hero->getZ();
     float heroAngle = hero->getRotation();
@@ -214,15 +225,39 @@ void updateCam()
                        GLdouble upY,        |- Up vector
                        GLdouble upZ )      /
      */
-	gluLookAt(camX,
-           camY,
-           camZ,
-           posX + cos(hero->getRotation()*PI/180),
-           posY + 0.5,
-           posZ + sin(hero->getRotation()*PI/180),
-           0.0,
-           1.5,
-           0.0);
+    if(camera == CAMERA_3RD_PERSON)
+    {
+        gluLookAt(camX,
+                  camY,
+                  camZ,
+                  posX + cos(hero->getRotation()*PI/180),
+                  posY + 0.5,
+                  posZ + sin(hero->getRotation()*PI/180),
+                  0.0,
+                  1.5,
+                  0.0);
+    }
+    else if(camera == CAMERA_1ST_PERSON)
+    {
+        posY = 1.5f;
+        gluLookAt(posX,posY,posZ,
+            posX + cos (hero->getRotation()*PI/180),
+            posY,
+            posZ + sin (hero->getRotation()*PI/180),
+            0.0,1.0,0.0);
+    } else // Top view
+    {
+        gluLookAt(planeSize/2,
+                  planeSize/2+25,
+                  planeSize/2,
+                  planeSize/2,
+                  1,
+                  planeSize/2,
+                  1.0,
+                  1.0,
+                  0.0);
+    }
+
 
     GLfloat light_position1[] = {0.0,2.0,0.0, 0.5 };
     glLightfv(GL_LIGHT0, GL_POSITION, light_position1);
@@ -283,7 +318,7 @@ void mainInit() {
 
     // hero
     hero = new Hero();
-    hero->setCoordinates(0, 1, 0);
+    hero->setCoordinates(1, 1, 16);
     hero->setScale(0.6, 0.6, 0.6);
     hero->setModelPath(hero_model);
 
@@ -601,7 +636,7 @@ void onKeyDown(unsigned char key, int x, int y) {
 			hero->rotateRight();
 			break;
 		case 99: //c
-			crouched = true;
+			camera = (camera + 1) % 3;
 			break;
 		case 114: //r
 			running = true;
