@@ -34,6 +34,7 @@ public:
 
     void setScale(float, float, float);
     void setCoordinates(float, float, float);
+    void setRotation(float);
     void setX(float);
     void setY(float);
     void setZ(float);
