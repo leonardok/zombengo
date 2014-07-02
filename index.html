@@ -60,6 +60,16 @@
 
 <p>Em linhas gerais, o programa funciona da seguinte forma: para cada objeto no jogo é feita uma instanciação da classe correspondente. Essas instancias são colocadas em um vetor que, a cada renderização da cena, será percorrido chamando o método Draw de cada objeto pertencente a ele. Alterações na cena são reﬂetidas nos atributos dos objetos alterados que, por sua vez, irão reﬂetir na renderização do objeto quando chamado o método Draw. Para eliminar algum elemento da cena, basta excluir do vetor seu objeto correspondente.</p>
 
+<p>Usamos um tile map, para caminhamento, onde o grid é dividido em 32x32 posições e é possível apenas nas quatro direções:</p>
+<ul>
+  <li>Esquerda</li>
+  <li>Direita</li>
+  <li>Para cima</li>
+  <li>Para baixo</li>
+</ul>
+
+<p>As colisões são baseadas em um mapa de posições, onde cada <i>Entity</i> descreve sua posição. Desta forma o movimento e colisões são simplificados e facilmente extendidos.</p>
+
 <h3>
 <a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Manual</h3>
 
