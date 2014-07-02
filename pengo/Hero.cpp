@@ -35,14 +35,14 @@ bool Hero::checkForCollisions()
     int newX = this->posX + round(cos(radians));
     int newZ = this->posZ + round(sin(radians));
 
-    std::cout << "Checking collisions at " << newX << " " << newZ << std::endl;
+    if(config_debug) std::cout << "Checking collisions at " << newX << " " << newZ << std::endl;
 
     if(map_matrix[newX][newZ] != EMPTY)
     {
-        std::cout << "Not empty cell, it has " << map_matrix[newX][newZ] << ".\n";
+        if(config_debug) std::cout << "Not empty cell, it has " << map_matrix[newX][newZ] << ".\n";
         if(map_matrix[newX][newZ] == ENEMY)
         {
-            exit(0);
+            gameOver();
         }
         return true;
     }
@@ -66,26 +66,24 @@ void Hero::walkForward()
 
     if(checkForCollisions() == true)
     {
-        std::cout << "Hero::walkForward - Collided!\n";
+        if(config_debug) std::cout << "Hero::walkForward - Collided!\n";
         return;
     }
+
+    // Get new old position
+    int oldX = this->posX;
+    int oldZ = this->posZ;
+    map_matrix[oldX][oldZ] = EMPTY;
 
     this->posX += round(cos(radians));
     this->posZ += round(sin(radians));
 
-    this->setCoordinates(this->posX, this->posY, this->posZ);
-    map_matrix[(int)this->posX][(int)this->posY] = HERO;
-
-
-    /**
-     * LOSE!!!
-     */
+    // Get new position based on the current angle
     int newX = this->posX;
     int newZ = this->posZ;
-    if(map_matrix[newX][newZ] == HERO)
-    {
-        exit(0);
-    }
+
+    this->setCoordinates(this->posX, this->posY, this->posZ);
+    map_matrix[newX][newZ] = HERO;
 
     if(config_debug)
         std::cout << "Hero::walkForward - angle:" << this->getRotation() << " degrees\n";

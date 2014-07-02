@@ -5,11 +5,16 @@
 
 #include "3DObject.h"
 
+
+extern void gameOver();
+extern bool config_debug;
+
 enum entity_codes
 {
     WALL = 0,
+    ENEMY = 1,
     HERO = 2,
-    ENEMY = 3,
+    CRATE = 3,
     EMPTY = 4,
 };
 

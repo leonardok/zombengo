@@ -765,10 +765,14 @@ void mainIdle() {
 	glutPostRedisplay();
 }
 
+void gameOver()
+{
+    std::cout << lost_msg << "\n";
+    exit(0);
+}
+
 int main(int argc, char **argv)
 {
-    config_debug = true;
-
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(windowWidth,windowHeight);
