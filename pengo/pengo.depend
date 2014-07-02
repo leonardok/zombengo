@@ -804,7 +804,7 @@
 1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\block.h
 	"Entity.h"
 
-1404254921 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\entity.h
+1404263485 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\entity.h
 	<math.h>
 	"3DObject.h"
 
@@ -867,18 +867,19 @@
 1404165693 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\wall.h
 	"Entity.h"
 
-1404252450 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\enemy.cpp
+1404263485 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\enemy.cpp
+	<iostream>
 	"Enemy.h"
-	<iostream>
+	"Stage.h"
 
-1404251240 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\enemy.h
+1404261941 c:\documents and settings\paulo\desktop\pengo\pengo\pengo\enemy.h
 	"Entity.h"
 
-1404254921 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\entity.cpp
+1404263485 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\entity.cpp
 	"Entity.h"
 	<iostream>
 
-1404255218 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\main.cpp
+1404265951 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\main.cpp
 	<windows.h>
 	<stdio.h>
 	<stdlib.h>
@@ -918,6 +919,6 @@
 	"Entity.h"
 	"EmptyCell.h"
 
-1404234963 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\stage.cpp
+1404261941 source:c:\documents and settings\paulo\desktop\pengo\pengo\pengo\stage.cpp
 	"Stage.h"
 

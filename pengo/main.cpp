@@ -447,7 +447,16 @@ void renderFloor() {
 	glPopMatrix();
 
 }
+std::vector<Crate*> novosblocos;
 
+void rendernovosblocos()
+{
+    int i;
+    for(i = 0; i < novosblocos.size(); i++)
+    {
+        novosblocos[i]->Draw();
+    }
+}
 void renderScene() {
 	glClearColor(0.8,0.8,0.8,0.8);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  // limpar o depth buffer
@@ -459,7 +468,7 @@ void renderScene() {
 
 	renderFloor();
 	renderCrates();
-
+    rendernovosblocos();
     for(int i = 0 ;i < enemies.size();i++)
     {
         enemies[i]->update();
@@ -572,6 +581,55 @@ void onMousePassiveMove(int x, int y) {
 	//glutPostRedisplay();
 }
 
+void criabloco()
+{
+    Crate *c = new Crate();
+    float x = 5.0, z = 5.0;
+    c->model.Load("res/objs/ice/Killer_Frost_Ice_Block.obj");
+
+
+    if(hero->getRotation()==0)
+    {
+        x = hero->getX()+1.0;
+        z = hero->getZ();
+        map_matrix[(int) hero->getX() +1][(int)hero->getZ()]= 0;
+        c->setCoordinates(x, 0.8, z);
+        c->setScale(0.6, 0.8, 0.6);
+        novosblocos.push_back(c);
+    }
+    if(hero->getRotation()==90)
+    {
+        x = hero->getX();
+        z = hero->getZ()+1;
+        map_matrix[(int)hero->getX()][(int)hero->getZ()+1]= 0;
+        c->setCoordinates(x, 0.8, z);
+        c->setScale(0.6, 0.8, 0.6);
+        novosblocos.push_back(c);
+    }
+     if(hero->getRotation()==180)
+    {
+        x = hero->getX()-1.0;
+        z = hero->getZ();
+        map_matrix[((int)hero->getX())-1][(int)hero->getZ()]= 0;
+        c->setCoordinates(x, 0.8, z);
+        c->setScale(0.6, 0.8, 0.6);
+        novosblocos.push_back(c);
+    }
+
+    if(hero->getRotation()==270)
+    {
+
+        x = hero->getX();
+        z = hero->getZ()-1;
+        map_matrix[(int)hero->getX()][(int)(hero->getZ())-1]= 0;
+        c->setCoordinates(x, 0.8, z);
+        c->setScale(0.6, 0.8, 0.6);
+        novosblocos.push_back(c);
+    }
+
+
+
+}
 /**
 Key press event handler
 */
@@ -601,7 +659,7 @@ void onKeyDown(unsigned char key, int x, int y) {
 			hero->rotateRight();
 			break;
 		case 99: //c
-			crouched = true;
+			criabloco();
 			break;
 		case 114: //r
 			running = true;
