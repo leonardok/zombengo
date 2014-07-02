@@ -319,6 +319,8 @@ void mainInit() {
     // hero
     hero = new Hero();
     hero->setCoordinates(1, 1, 16);
+    map_matrix[1][16] = 2;
+
     hero->setScale(0.6, 0.6, 0.6);
     hero->setModelPath(hero_model);
 

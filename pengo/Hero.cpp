@@ -1,5 +1,7 @@
 #include "Hero.h"
 
+extern int **map_matrix;
+
 Hero::Hero()
 {
     this->rotatingLeft = false;
@@ -18,6 +20,38 @@ void Hero::setModelPath(char *file_path)
 }
 
 /**
+ * void Enemy::checkForCollisions()
+ *
+ * We only check for collisions when we are still, so no need to round
+ * positions
+ *
+ * Returns true if collide!
+ */
+bool Hero::checkForCollisions()
+{
+    float radians = this->getRotation() * M_PI / 180;
+
+    // Get new position based on the current angle
+    int newX = this->posX + round(cos(radians));
+    int newZ = this->posZ + round(sin(radians));
+
+    std::cout << "Checking collisions at " << newX << " " << newZ << std::endl;
+
+    if(map_matrix[newX][newZ] != EMPTY)
+    {
+        std::cout << "Not empty cell, it has " << map_matrix[newX][newZ] << ".\n";
+        if(map_matrix[newX][newZ] == ENEMY)
+        {
+            exit(0);
+        }
+        return true;
+    }
+
+    return false;
+}
+
+
+/**
  * Hero::walkForward
  *
  * As there will be always only 4 angles: 0, 90, 180 and 270
@@ -30,10 +64,28 @@ void Hero::walkForward()
 {
     float radians = this->getRotation() * M_PI / 180;
 
+    if(checkForCollisions() == true)
+    {
+        std::cout << "Hero::walkForward - Collided!\n";
+        return;
+    }
+
     this->posX += round(cos(radians));
     this->posZ += round(sin(radians));
 
     this->setCoordinates(this->posX, this->posY, this->posZ);
+    map_matrix[(int)this->posX][(int)this->posY] = HERO;
+
+
+    /**
+     * LOSE!!!
+     */
+    int newX = this->posX;
+    int newZ = this->posZ;
+    if(map_matrix[newX][newZ] == HERO)
+    {
+        exit(0);
+    }
 
     if(config_debug)
         std::cout << "Hero::walkForward - angle:" << this->getRotation() << " degrees\n";

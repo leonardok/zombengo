@@ -8,6 +8,7 @@
 enum entity_codes
 {
     WALL = 0,
+    HERO = 2,
     ENEMY = 3,
     EMPTY = 4,
 };

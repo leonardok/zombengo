@@ -16,6 +16,7 @@ class Hero : public Entity
 
         void rotateRight();
         void rotateLeft();
+        bool checkForCollisions();
         void walkForward();
 
         void setModelPath(char *);
@@ -26,6 +27,9 @@ class Hero : public Entity
     private:
         bool rotatingRight;
         bool rotatingLeft;
+
+        // Track old position. We empty it when stop walking
+        int oldX, oldZ;
 };
 
 #endif // HERO_H
