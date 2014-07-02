@@ -569,7 +569,7 @@ void mainHandleMouseRightButtonMenuEvent(int option) {
 Create mouse button menu
 */
 void mainCreateMenu() {
-	glutCreateMenu(mainHandleMouseRightButtonMenuEvent);
+//	glutCreateMenu(mainHaindleMouseRightButtonMenuEvent);
 	glutAddMenuEntry("Quit", 1);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
@@ -849,6 +849,15 @@ int main(int argc, char **argv)
                 e->setScale(0.6, 0.8, 0.6);
                 e->setRotation(270.0);
                 enemies.push_back(e);
+            }
+            if(map_matrix[mapx][mapz] == 3)
+            {
+                Crate *c = new Crate();
+
+                c->model.Load("res/objs/ice_crate/Killer_Frost_Ice_Block.obj");
+                c->setCoordinates(mapx, 0.8, mapz);
+                c->setScale(0.6, 0.8, 0.6);
+                crates.push_back(c);
             }
         }
     }
