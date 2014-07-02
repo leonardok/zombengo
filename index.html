@@ -46,12 +46,14 @@
 
 <img src="https://raw.githubusercontent.com/leonardok/zombengo/master/pengo/docs/first_person_zombie_encounter.PNG" />
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Como exigido pela deﬁniç˜ao, o trabalho foi desenvolvido em C++ usando openGL e Glut. Para integraç˜ao do código desenvolvido pela dupla, controle da divis˜ao de tarefas e checklist foi usado o repositório GitHub.</p>
+
+<p></p>As únicas partes do código n˜ao desenvolvidas pela dupla s˜ao as classes de carregamento de objetos 3D e de bitmaps disponibilizadas pelo professor.</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Estrutura</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>O código feito para o desenvolvimento dessa tarefa utiliza uma estrutura em classes. Foi criada uma classes mãe, chamada “Entity”, e nela foram deﬁnidos todos os métodos e atributos comuns às entidades do jogo, como, por exemplo, posição na tela, colisões e movimentos. As seguintes classes herdam os métodos e atributos de Entity: Hero, que representa o personagem principal; Enemy, que representa os inimigos; Item, que representa os ítens; Crate, que representa os blocos. Também foi criada uma classe chamada ‘Stage’, responsável por representar o estado do cenário. O cenário tem o tamanho padrão de 32 células por 32 células, e é inicializado baseado em uma imagem (Bitmap padão) com as mesmas dimensões. Nessa imagem, os píxels que tiverem a cor preta correspodem às células que serão iniciadas com blocos fixos (o "muro"), os azuis são os blocos móveis, os vermelhos correspondem às que serão iniciadas com inimigos e os brancos correpondem às que serão inicializadas vazias.</p>
 
 <h3>
 <a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
