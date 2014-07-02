@@ -585,7 +585,7 @@ void criabloco()
 {
     Crate *c = new Crate();
     float x = 5.0, z = 5.0;
-    c->model.Load("res/objs/ice/Killer_Frost_Ice_Block.obj");
+    c->model.Load("res/objs/ice_crate/Killer_Frost_Ice_Block.obj");
 
 
     if(hero->getRotation()==0)
