@@ -620,8 +620,10 @@ void onMousePassiveMove(int x, int y) {
 
 void criabloco()
 {
+    std::cout << "Creating block" << std::endl;
+
     Crate *c = new Crate();
-    float x = 5.0, z = 5.0;
+    int x = 5, z = 5;
     c->model.Load("res/objs/ice_crate/Killer_Frost_Ice_Block.obj");
 
 
@@ -629,41 +631,31 @@ void criabloco()
     {
         x = hero->getX()+1.0;
         z = hero->getZ();
-        map_matrix[(int) hero->getX() +1][(int)hero->getZ()]= 0;
-        c->setCoordinates(x, 0.8, z);
-        c->setScale(0.6, 0.8, 0.6);
-        novosblocos.push_back(c);
     }
-    if(hero->getRotation()==90)
+    else if(hero->getRotation()==90)
     {
         x = hero->getX();
         z = hero->getZ()+1;
-        map_matrix[(int)hero->getX()][(int)hero->getZ()+1]= 0;
-        c->setCoordinates(x, 0.8, z);
-        c->setScale(0.6, 0.8, 0.6);
-        novosblocos.push_back(c);
     }
-     if(hero->getRotation()==180)
+    else if(hero->getRotation()==180)
     {
         x = hero->getX()-1.0;
         z = hero->getZ();
-        map_matrix[((int)hero->getX())-1][(int)hero->getZ()]= 0;
-        c->setCoordinates(x, 0.8, z);
-        c->setScale(0.6, 0.8, 0.6);
-        novosblocos.push_back(c);
     }
-
-    if(hero->getRotation()==270)
+    else if(hero->getRotation()==270)
     {
-
         x = hero->getX();
         z = hero->getZ()-1;
-        map_matrix[(int)hero->getX()][(int)(hero->getZ())-1]= 0;
-        c->setCoordinates(x, 0.8, z);
-        c->setScale(0.6, 0.8, 0.6);
-        novosblocos.push_back(c);
     }
 
+    map_matrix[x][z] = CRATE;
+    std::cout << "Created block at" << x << " " << z << std::endl;
+
+
+    c->setCoordinates(x, 0.8, z);
+    c->setScale(0.6, 0.8, 0.4);
+
+    crates.push_back(c);
 
 
 }
@@ -695,10 +687,10 @@ void onKeyDown(unsigned char key, int x, int y) {
 		case 100: //d
 			hero->rotateRight();
 			break;
-		case 99: //c
+		case 118: //v
 			camera = (camera + 1) % 3;
 			break;
-		case 102: //c
+		case 99: //c
 			criabloco();
 			break;
 		case 114: //r
